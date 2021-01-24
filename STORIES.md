@@ -8,9 +8,13 @@ As a Ruby Developer, I want to document code usage examples, so that people can 
 
 ### Stories next on list
 
-As a Developer, I can DO_SOMETHING, so that I QUALITY_OF_LIFE
+As a Developer, I can generate documentation in various formats, so that I easily document ruby applications
 
-- Subtask
+- Build Documentor with flexible renderer plugins
+
+As a Developer, I can build documentable usecases, so that I easily document usage examples
+
+- Build Usecase
 
 ### Tasks next on list
 
@@ -25,6 +29,12 @@ Setup GitHub Action (test and lint)
 - Setup RuboCop action
 
 ## Stories and tasks
+
+### Stories - completed
+
+As a Developer, I can extract code and other content from unit test, so that I can inject it into documentation
+
+- Build Content, ContentCode an ContentOutcome
 
 ### Tasks - completed
 
