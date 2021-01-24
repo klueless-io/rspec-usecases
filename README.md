@@ -1,10 +1,6 @@
 # Rspec Usecases
 
-> null
-
-This GEM is inspired by the Javascript Library [handlebars-helpers](https://github.com/helpers/handlebars-helpers).
-
-I am following a lot of the categories found there, but this GEM is not a one for one match to the existing JS library as I feel it is a bit dated and could use some new helpers and categories may be relevant today.
+> Rspec Usecases helps to write self-documenting code usage examples that execute as normal unit tests while outputting documentation in varied formats
 
 ## Installation
 
@@ -30,16 +26,23 @@ gem install rspec-usecases
 
 ### Main Story
 
-
+As a Ruby Developer, I want to document code usage examples, so that people can get going quickly with implementation
 
 See all [stories](./STORIES.md)
-
 
 ## Usage
 
 See all [usage examples](./USAGE.md)
 
+### Basic Example
 
+#### Basic example
+
+Description for a basic example to be featured in the main README.MD file
+
+```ruby
+class SomeRuby; end
+```
 
 ## Development
 
