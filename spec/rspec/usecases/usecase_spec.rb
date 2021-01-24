@@ -129,19 +129,19 @@ RSpec.describe Rspec::Usecases::Usecase do
     # before { subject.parse(usecase_with_content) }
     subject { described_class.parse('key1', usecase_with_content) }
 
-    context 'usecase has no content' do
-      let(:usecase_with_content) do
-        double('ExampleGroup',
-               metadata: { usecase: true },
-               example_group: descendant_parents,
-               examples: [],
-               descendants: [])
-      end
+    # context 'usecase has no content' do
+    #   let(:usecase_with_content) do
+    #     double('ExampleGroup',
+    #            metadata: { usecase: true },
+    #            example_group: descendant_parents,
+    #            examples: [],
+    #            descendants: [])
+    #   end
 
-      it { is_expected.to have_attributes(contents: []) }
+    #   it { is_expected.to have_attributes(contents: []) }
 
-      it { expect(subject.to_h).to include(contents: []) }
-    end
+    #   it { expect(subject.to_h).to include(contents: []) }
+    # end
 
     context 'usecase has content' do
       let(:usecase_with_content) do

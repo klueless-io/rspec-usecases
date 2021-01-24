@@ -67,9 +67,8 @@ module Rspec
         puts "contents                      : #{contents}"
       end
 
-      def add_content(_example)
-        # content = KUsecases::Content.parse(example)
-        content = nil
+      def add_content(example)
+        content = Rspec::Usecases::Content.parse(example)
         @contents << content unless content.nil?
       end
 
