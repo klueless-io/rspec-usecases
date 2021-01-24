@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rspec/usecases/version'
+require 'rspec/usecases/usecase'
 
 module Rspec
   module Usecases
