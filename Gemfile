@@ -6,9 +6,11 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  # Currently conflicts with GitHub actions and so I remove it on push
-  # pry on steroids
   if ENV['RUBY_DEBUG_DEVELOPMENT']
+    # Currently conflicts with GitHub actions and so only available when
+    # environment varialbe is set.
+    # On Mac:
+    # ```export RUBY_DEBUG_DEVELOPMENT=true```
     gem 'jazz_fingers'
     gem 'pry-coolline', github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
   end
