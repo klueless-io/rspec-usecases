@@ -1,12 +1,30 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-# Specify your gem's dependencies in rspec-usecases.gemspec
+# Specify your gem's dependencies in rspec_usecases.gemspec
 gemspec
 
-gem "rake", "~> 13.0"
+group :development do
+  # Currently conflicts with GitHub actions and so I remove it on push
+  # pry on steroids
+  gem 'jazz_fingers'
+  gem 'pry-coolline', github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
+end
 
-gem "rspec", "~> 3.0"
+group :development, :test do
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+  gem 'rake', '~> 12.0'
+  gem 'rake-compiler', require: false
+  gem 'rspec', '~> 3.0'
+  gem 'rubocop'
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-rspec', require: false
+end
 
-gem "rubocop", "~> 1.7"
+# Temporary path:
+group :test do
+  gem 'k_usecases', path: '~/dev/kgems/k_usecases'
+end
