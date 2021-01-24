@@ -4,6 +4,7 @@ require 'pry'
 require 'bundler/setup'
 require 'rspec/usecases'
 # require 'k_usecases'
+require 'support/usecase_examples'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -16,6 +17,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  # Add rspec support helpers
+  config.include UsecaseExamples
 
   # ----------------------------------------------------------------------
   # Usecase Documentor
@@ -38,4 +42,9 @@ RSpec.configure do |config|
   #   puts self.class
   #   puts '-' * 70
   # end
+end
+
+def fixture_path(name)
+  # File.join(File.expand_path("../fixtures", __FILE__), name)
+  File.join(File.expand_path('fixtures', __dir__), name)
 end
