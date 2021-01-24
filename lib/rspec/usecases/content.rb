@@ -53,8 +53,13 @@ module Rspec
         begin
           content_object = "#{klass}.parse(title, type, metadata)"
           eval(content_object)
-        rescue StandardError # => exception
+        rescue NameError
+          # TODO: Logging
           puts "UNKNOWN CONTENT TYPE: #{metadata[:content_type]}"
+          nil
+        rescue StandardError => e
+          # TODO: Logging
+          puts e
           nil
         end
       end
@@ -72,6 +77,7 @@ module Rspec
       # rubocop:enable Style/DoubleNegation
 
       # Have not written a test for this yet
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/AbcSize
       def parse_block_source(example)
         @debug = false
 
@@ -101,6 +107,7 @@ module Rspec
         puts example.metadata
         puts e
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/AbcSize
 
       def remove_wasted_indentation(content)
         lines = content.lines
