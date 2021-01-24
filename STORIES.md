@@ -18,11 +18,6 @@ As a Developer, I can build documentable usecases, so that I easily document usa
 
 ### Tasks next on list
 
-Setup RubyGems and RubyDoc
-
-- Build and deploy gem to [rubygems.org](https://rubygems.org/gems/rspec-usecases)
-- Attach documentation to [rubydoc.info](https://rubydoc.info/github/to-do-/rspec-usecases/master)
-
 Setup GitHub Action (test and lint)
 
 - Setup Rspec action
@@ -32,11 +27,20 @@ Setup GitHub Action (test and lint)
 
 ### Stories - completed
 
+Remove cooline and jazz_fingers gem from github actions by running from env variable
+
+- On Mac `export RUBY_DEBUG_DEVELOPMENT=true`
+
 As a Developer, I can extract code and other content from unit test, so that I can inject it into documentation
 
 - Build Content, ContentCode an ContentOutcome
 
 ### Tasks - completed
+
+Setup RubyGems and RubyDoc
+
+- Build and deploy gem to [rubygems.org](https://rubygems.org/gems/rspec-usecases)
+- Attach documentation to [rubydoc.info](https://rubydoc.info/github/to-do-/rspec-usecases/master)
 
 Setup project management, requirement and SCRUM documents
 
