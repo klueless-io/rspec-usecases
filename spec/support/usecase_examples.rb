@@ -1,6 +1,36 @@
 # frozen_string_literal: true
 
 module UsecaseExamples
+  def create_complex_document(json: false,
+                              debug: false,
+                              markdown: false,
+                              markdown_file: 'generate_markdown.md',
+                              markdown_prettier: false,
+                              markdown_open: false)
+
+    documentor_settings = {
+      usecases: true,
+      json: json,
+      debug: debug,
+      markdown: markdown,
+      markdown_file: markdown_file,
+      markdown_prettier: markdown_prettier,
+      markdown_open: markdown_open,
+      document_title: 'title',
+      document_description: 'description'
+    }
+
+    descendant_children = [
+      create_describe,
+      create_usecase1,
+      create_usecase2
+    ]
+
+    double('RootExampleGroup',
+           descendants: descendant_children,
+           metadata: documentor_settings)
+  end
+
   def create_example_group
     double('RootExampleGroup',
            descendants: descendant_children,
@@ -92,8 +122,9 @@ module UsecaseExamples
            description: 'code 1',
            metadata: {
              content_type: :code,
+             summary: 'code summary 1',
              code_type: :ruby,
-             block: double(source: 'ruby "xyz" do code summary 1 end')
+             block: double(source: 'ruby "xyz" do # some code goes here; end')
            })
   end
 end

@@ -22,6 +22,11 @@ RSpec.describe Rspec::Usecases::Document do
       it { is_expected.to have_attributes(title: '', description: '', usecases: []) }
     end
 
+    context 'with title and description' do
+      let(:documentor_settings) { { document_title: 'title', document_description: 'description' } }
+      it { is_expected.to have_attributes(title: 'title', description: 'description') }
+    end
+
     context 'with one use case' do
       subject { instance.usecases.length }
       let(:descendant_children) { [usecase1] }
