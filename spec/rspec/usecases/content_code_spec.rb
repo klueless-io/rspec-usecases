@@ -17,7 +17,8 @@ RSpec.describe Rspec::Usecases::ContentCode do
         is_expected.to have_attributes(title: 'code 1',
                                        type: 'code',
                                        code_type: 'ruby',
-                                       source: 'code summary 1')
+                                       summary: 'code summary 1',
+                                       source: '# some code goes here;')
       }
 
       # it { puts subject.to_h }

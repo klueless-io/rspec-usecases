@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-RSpec.describe Rspec::Usecases::Renderers::PrintDebugRenderer do
+RSpec.describe Rspec::Usecases::Renderers::PrintJsonRenderer do
   subject { described_class.new.render(document) }
 
   let(:document) { Rspec::Usecases::Document.new(example_group) }
-  let(:example_group) { create_complex_document(debug: true) }
+  let(:example_group) { create_complex_document(json: true) }
   let(:descendant_parents) { create_descendant_parents }
 
   describe '#render' do

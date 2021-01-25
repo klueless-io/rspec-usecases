@@ -4,8 +4,8 @@ module Rspec
   module Usecases
     # A document represents a list of usecases
     #
-    # A document can have a title, description a list of usecases
-    # A use_case is just an Rspec context or describe block with the
+    # A document can have a title, description and a list of usecases
+    # A usecase is just an Rspec context or describe block with the
     # attribute usecase set to true - usecase: true
     class Document
       attr_reader :usecases

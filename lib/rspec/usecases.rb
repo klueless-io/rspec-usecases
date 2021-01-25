@@ -6,8 +6,11 @@ require 'rspec/usecases/content'
 require 'rspec/usecases/content_code'
 require 'rspec/usecases/content_outcome'
 require 'rspec/usecases/document'
+require 'rspec/usecases/documentor'
 require 'rspec/usecases/renderers/base_renderer'
 require 'rspec/usecases/renderers/print_debug_renderer'
+require 'rspec/usecases/renderers/print_json_renderer'
+require 'rspec/usecases/renderers/generate_markdown_renderer'
 
 module Rspec
   module Usecases
