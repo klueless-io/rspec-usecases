@@ -65,7 +65,6 @@ module Rspec
       end
       # rubocop:enable Lint/UselessAssignment, Security/Eval
 
-      # rubocop:disable Style/DoubleNegation
       def initialize(title, type, metadata)
         @title = title.start_with?('example at .') ? '' : title
         @type = type
@@ -74,7 +73,6 @@ module Rspec
 
         yield self if block_given?
       end
-      # rubocop:enable Style/DoubleNegation
 
       # Have not written a test for this yet
       # rubocop:disable Metrics/CyclomaticComplexity, Metrics/AbcSize

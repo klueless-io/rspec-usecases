@@ -8,19 +8,22 @@ module Rspec
     module Renderers
       # Print Debug Renderer
       class PrintDebugRenderer < Rspec::Usecases::Renderers::BaseRenderer
-        def render(documentor)
+        def render(document)
           @output = ''
           write_line '*' * 100
-          write_line "Title             : #{documentor.title}" if documentor.title
-          write_line "Description       : #{documentor.description}" if documentor.description
-          documentor.usecases.each { |usecase| print_usecase(usecase) }
+          write_line "Title             : #{document.title}" if document.title
+          write_line "Description       : #{document.description}" if document.description
+
+          document.usecases.each { |usecase| print_usecase(usecase) }
           puts @output
         end
+
+        private
 
         def print_usecase(usecase)
           print_usecase_header(usecase)
 
-          usecase.contents.each(&:print_usecase_content)
+          usecase.contents.each { |content| print_usecase_content(content) }
         end
 
         def print_usecase_header(usecase)
