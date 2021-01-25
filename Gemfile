@@ -15,7 +15,6 @@ group :development do
     gem 'pry-coolline', github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
   end
 end
-
 group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rspec'

@@ -4,7 +4,7 @@
 
 module Rspec
   module Usecases
-    # Usecase
+    # A usecase stores documentation for a single code usage scenario.
     class Usecase
       # key
       attr_reader :key
