@@ -68,7 +68,7 @@ module UsecaseExamples
 
   def create_usecase1
     double('ExampleGroupUsecase',
-           metadata: { usecase: true },
+           metadata: { usecase: true, description: 'Fuckit' },
            name: 'usecase1',
            example_group: descendant_parents,
            descendants: [],

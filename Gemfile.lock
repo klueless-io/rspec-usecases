@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    rspec-usecases (0.0.19)
+    rspec-usecases (0.0.20)
 
 GEM
   remote: https://rubygems.org/

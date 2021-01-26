@@ -1,7 +1,7 @@
 # title
 description
 
-## A B C Default Title
+## Default Title
 
 
 ## My custom title
