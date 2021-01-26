@@ -44,32 +44,40 @@ RSpec.describe Rspec::Usecases::Usecase do
       let(:usecase_with_title) do
         double('ExampleGroup',
                metadata: { usecase: true },
+               description: 'Some Title',
                example_group: create_descendant_parents,
                descendants: [])
       end
 
       it {
-        is_expected.to have_attributes(title: 'Default Title',
-                                       deep_title: 'A B C Default Title')
+        is_expected.to have_attributes(title: 'Some Title',
+                                       deep_title: 'A B C Some Title')
       }
 
       it {
-        expect(subject.to_h).to include(title: 'Default Title',
-                                        deep_title: 'A B C Default Title')
+        expect(subject.to_h).to include(title: 'Some Title',
+                                        deep_title: 'A B C Some Title')
       }
     end
 
     context 'usecase has custom title' do
       let(:usecase_with_title) do
         double('ExampleGroup',
-               metadata: { usecase: true, title: 'Custom Title' },
+               metadata: { usecase: true, title: 'Override Title' },
+               description: 'Some Title',
                example_group: create_descendant_parents,
                descendants: [])
       end
 
-      it { is_expected.to have_attributes(title: 'Custom Title') }
+      it {
+        is_expected.to have_attributes(title: 'Override Title',
+                                       deep_title: 'A B C Override Title')
+      }
 
-      it { expect(subject.to_h).to include(title: 'Custom Title') }
+      it {
+        expect(subject.to_h).to include(title: 'Override Title',
+                                        deep_title: 'A B C Override Title')
+      }
     end
   end
 
@@ -155,6 +163,7 @@ RSpec.describe Rspec::Usecases::Usecase do
       let(:usecase_with_content) do
         double('ExampleGroup',
                metadata: { usecase: true },
+               description: 'usecase with content',
                example_group: descendant_parents,
                examples: [
                  create_content_outcome1,

@@ -92,12 +92,14 @@ module Rspec
       def build_title(example_group)
         return if title != ''
 
-        @title = example_group.metadata[:title] || example_group.example_group.parent_groups.first&.description
+        @title = example_group.metadata[:title] || example_group.description
+        # .example_group.parent_groups.first&.description
 
         build_deep_title(example_group)
       end
 
       def build_deep_title(example_group)
+        # example_group.example_group.parent_groups.reverse.map { |g| g.description }
         example_group.example_group.parent_groups.reverse.each do |group|
           @deep_title = if @deep_title.length.zero?
                           group.description
@@ -105,6 +107,7 @@ module Rspec
                           "#{@deep_title} #{group.description}"
                         end
         end
+        @deep_title = "#{@deep_title} #{@title}"
       end
     end
   end
