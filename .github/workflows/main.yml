@@ -27,7 +27,7 @@ jobs:
         bundle install
     - name: Run tests
       env: # Or as an environment variable
-        USAGE_CI: 'github_actions'
+        USAGE_CI: 'not_a_ci'
       run: bundle exec rspec
     - name: Run rubocop
       run: bundle exec rubocop
