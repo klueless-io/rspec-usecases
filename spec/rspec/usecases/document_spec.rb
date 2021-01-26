@@ -85,8 +85,18 @@ RSpec.describe Rspec::Usecases::Document do
           context 'check attribute values' do
             subject { instance.usecases }
 
-            it { is_expected.to include(an_object_having_attributes(key: 'usecase1', title: 'Default Title', deep_title: 'A B C Default Title', usage: '')) }
-            it { is_expected.to include(an_object_having_attributes(key: 'usecase2', title: 'My custom title', deep_title: 'A B C Default Title', usage: 'MyClass.load')) }
+            it {
+              is_expected.to include(an_object_having_attributes(key: 'usecase1',
+                                                                 title: 'Simple usecase block',
+                                                                 deep_title: 'A B C Simple usecase block',
+                                                                 usage: ''))
+            }
+            it {
+              is_expected.to include(an_object_having_attributes(key: 'usecase2',
+                                                                 title: 'Usecase block with multiple content',
+                                                                 deep_title: 'A B C Usecase block with multiple content',
+                                                                 usage: 'MyClass.load'))
+            }
           end
           context 'check deep hash' do
             subject { instance.to_h }
@@ -105,15 +115,15 @@ RSpec.describe Rspec::Usecases::Document do
                 },
                 usecases: [{
                   key: 'usecase1',
-                  title: 'Default Title',
-                  deep_title: 'A B C Default Title',
+                  title: 'Simple usecase block',
+                  deep_title: 'A B C Simple usecase block',
                   summary: '',
                   usage: '',
                   usage_description: '',
                   contents: []
                 }, {
-                  title: 'My custom title',
-                  deep_title: 'A B C Default Title',
+                  title: 'Usecase block with multiple content',
+                  deep_title: 'A B C Usecase block with multiple content',
                   summary: 'My usecase summary',
                   usage: 'MyClass.load',
                   usage_description: 'My custom usage description',
