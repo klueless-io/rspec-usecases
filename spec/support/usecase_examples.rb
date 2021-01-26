@@ -39,31 +39,40 @@ module UsecaseExamples
            metadata: documentor_settings)
   end
 
+  # def create_descendant_parents
+  #   double(parent_groups: [
+  #            #  double(description: 'Default Title'),
+  #            double(description: 'C'),
+  #            double(description: 'B'),
+  #            double(description: 'A')
+  #          ])
+  # end
+
   # Create multiple depth context groups
   #
   # Equivalent to:
   # describe 'A' do
-  #   context 'B' do
+  #   context 'B' dol
   #     context 'C' do
   #       usecase 'Some Title' do
   #       end
   #     end
   #   end
   # end
-  def create_descendant_parents
-    double(parent_groups: [
-             #  double(description: 'Default Title'),
-             double(description: 'C'),
-             double(description: 'B'),
-             double(description: 'A')
-           ])
+  def create_parent_groups(focus_title)
+    [
+      double(description: focus_title),
+      double(description: 'C'),
+      double(description: 'B'),
+      double(description: 'A')
+    ]
   end
 
   def create_describe
     double('ExampleGroup',
            metadata: {},
            description: 'simple describe block',
-           example_group: descendant_parents,
+           parent_groups: create_parent_groups('simple describe block'),
            descendants: [])
   end
 
@@ -72,7 +81,7 @@ module UsecaseExamples
            metadata: { usecase: true },
            name: 'usecase1',
            description: 'Simple usecase block',
-           example_group: descendant_parents,
+           parent_groups: create_parent_groups('Simple usecase block'),
            descendants: [],
            examples: [])
   end
@@ -88,24 +97,7 @@ module UsecaseExamples
            },
            name: 'usecase2',
            description: 'Usecase block with multiple content',
-           example_group: descendant_parents,
-           descendants: [],
-           examples: [
-             create_content_outcome1,
-             create_content_code1
-           ])
-  end
-
-  def create_usecase3
-    double('ExampleGroupUsecase',
-           metadata: {
-             usecase: true,
-             title: 'My custom title with content examples',
-             usage: 'MyClass.load',
-             usage_description: 'MyClass.load - description goes here'
-           },
-           name: 'usecase3',
-           example_group: descendant_parents,
+           parent_groups: create_parent_groups('Usecase block with multiple content'),
            descendants: [],
            examples: [
              create_content_outcome1,
