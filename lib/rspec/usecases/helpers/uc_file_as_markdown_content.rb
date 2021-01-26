@@ -2,6 +2,7 @@
 
 module Rspec
   module Usecases
+    # These helpers can be used from RSpec tests
     module Helpers
       # Builds markdown ```content block``` by injecting content
       # from an existing file.
@@ -11,11 +12,11 @@ module Rspec
       # @param [String] code_type (optional) - what type of content is this, eg. javascript, ruby, css
       def uc_file_as_markdown_content(filename, lines: nil, code_type: nil)
         content = File.read(filename)
-  
+
         content = uc_grab_lines(content, lines) if lines
-  
+
         # To Deprecate: It may not be smart to support the code_type arg
-        #               it is probably better to pass content into markdown 
+        #               it is probably better to pass content into markdown
         #               components in raw format and let them apply this value
         content = "```#{code_type}\n#{content}\n```" unless code_type.nil?
         content

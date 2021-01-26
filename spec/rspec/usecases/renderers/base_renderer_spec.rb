@@ -5,12 +5,17 @@ require 'spec_helper'
 RSpec.describe Rspec::Usecases::Renderers::BaseRenderer do
   subject { instance }
 
-  let(:instance) { described_class.new }
+  let(:instance) { described_class.new(document) }
+
+  # Build a document
+  let(:document) { Rspec::Usecases::Document.new(example_group) }
+  let(:example_group) { create_complex_document(document_title: 'some document') }
+  let(:descendant_parents) { create_descendant_parents }
 
   describe '#constructor' do
     context 'with default parameters' do
       it { is_expected.not_to be_nil }
-      it { is_expected.to have_attributes(output: '') }
+      it { is_expected.to have_attributes(output: '', document: have_attributes(title: 'some document')) }
     end
   end
 

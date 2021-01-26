@@ -1,36 +1,27 @@
 # frozen_string_literal: true
 
-# require 'rspec/usecases/renderers/generate_markdown_renderer'
+require 'forwardable'
 
 module Rspec
   module Usecases
     module Renderers
       # Generate Markdown Renderer
       class GenerateMarkdownRenderer < Rspec::Usecases::Renderers::BaseRenderer
-        attr_reader :file
-        attr_reader :prettier
-        attr_reader :open
+        extend Forwardable
 
-        def initialize(metadata)
-          super()
-          @file = metadata[:markdown_file] || 'generate_markdown.md'
-          @prettier = metadata[:markdown_prettier] || false
-          @open = metadata[:markdown_open] || false
-        end
+        def_delegators :@document, :markdown_file, :markdown_prettier?, :markdown_open?
 
-        def render(document)
-          h1 document.title
-          write_line document.description
-          write_lf
+        def render
+          render_header
 
           document.usecases.each { |usecase| print_usecase(usecase) }
 
-          write_file(file)
-          prettier_file(file) if prettier
-          open_file_in_vscode(file) if open
+          write_file(markdown_file)
+          prettier_file(markdown_file) if markdown_prettier?
+          open_file_in_vscode(markdown_file) if markdown_open?
 
-          puts @output
-          puts file
+          # puts @output
+          # puts markdown_file
           # system "code #{file}"
         end
 
@@ -66,32 +57,47 @@ module Rspec
           write_line '---'
         end
 
+        def render_header
+          h1 document.title
+          write_line document.description
+          write_lf
+        end
+
         def print_usecase(usecase)
           h2 usecase.title
           write_lf
-          if usecase.summary
-            write_line usecase.summary
-            write_lf
-          end
+          print_summary(usecase)
+          print_usage(usecase)
+          print_contents(usecase)
+        end
 
-          unless usecase.usage == ''
-            # h3 'Usage'
-            h3 usecase.usage
-            write_lf
-            if usecase.usage_description
-              write_line usecase.usage_description
-              write_lf
-            end
-          end
+        def print_summary(usecase)
+          return unless usecase.summary
 
-          if usecase.contents.length.positive?
+          write_line usecase.summary
+          write_lf
+        end
 
-            usecase.contents.each do |content|
-              write_line '---' if content.is_hr
+        def print_usage(usecase)
+          return if usecase.usage == ''
 
-              render_outcome(content) if content.type == 'outcome'
-              render_code(content) if content.type == 'code'
-            end
+          h3 usecase.usage
+          write_lf
+
+          return unless usecase.usage_description
+
+          write_line usecase.usage_description
+          write_lf
+        end
+
+        def print_contents(usecase)
+          return if usecase.contents.empty?
+
+          usecase.contents.each do |content|
+            write_line '---' if content.is_hr
+
+            render_outcome(content) if content.type == 'outcome'
+            render_code(content) if content.type == 'code'
           end
         end
 
