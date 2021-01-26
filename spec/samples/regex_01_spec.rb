@@ -25,7 +25,6 @@ RSpec.describe Regexp,
   # end
 
   usecase 'Character classes',
-    # title: 'Character classes X',
     summary: 'With a "character class", also called "character set", you can tell the regex engine to match only one out of several characters' do
 
     ruby '=~ for match index and $~ for match data',
