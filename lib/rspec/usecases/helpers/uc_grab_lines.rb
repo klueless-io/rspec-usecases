@@ -2,6 +2,7 @@
 
 module Rspec
   module Usecases
+    # These helpers can be used from RSpec tests
     module Helpers
       # Grab lines from content into lines array and then extract specific lines
       #
@@ -32,6 +33,7 @@ module Rspec
       # @raise [Rspec::Usecases::Error] if lines to include contains a value greater than the content.line_count
       #
       # @param [Array<Integer>] lines_to_include is a list of line numbers to pluck from string
+      # rubocop:disable Metrics/AbcSize
       def uc_grab_lines(content, lines_to_include)
         content_lines = content.lines
 
@@ -46,6 +48,7 @@ module Rspec
 
         output_lines.join("\n")
       end
+      # rubocop:enable Metrics/AbcSize
     end
   end
 end

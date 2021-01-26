@@ -8,9 +8,11 @@ module Rspec
     module Renderers
       # Base renderer contains helper methods
       class BaseRenderer
+        attr_accessor :document
         attr_accessor :output
 
-        def initialize
+        def initialize(document)
+          @document = document
           @output = ''
         end
 

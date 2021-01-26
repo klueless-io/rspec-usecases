@@ -10,59 +10,24 @@ module Rspec
       # List of renderers selected for rendering
       attr_reader :renderers
 
-      def json?
-        @json
-      end
+      def initialize(root)
+        @document = Rspec::Usecases::Document.new(root)
 
-      def debug?
-        @debug
-      end
-
-      def markdown?
-        @markdown
-      end
-
-      # Generate Markdown Renderer
-      attr_reader :render_generate_markdown
-
-      def initialize(root_example_group)
-        @root = root_example_group
-
-        build_settings
         build_renderers
-
-        @document = Rspec::Usecases::Document.new(@root)
       end
 
       def render
-        @renderers.each do |renderer|
-          renderer.render(document)
-        end
+        @renderers.each(&:render)
       end
 
       private
 
-      # rubocop:disable Metrics/AbcSize
-      def build_settings
-        @json = !!@root.metadata[:json] && @root.metadata[:json] == true
-        @debug = !!@root.metadata[:debug] && @root.metadata[:debug] == true
-        @markdown = !!@root.metadata[:markdown] && @root.metadata[:markdown] == true
-      end
-      # rubocop:enable Metrics/AbcSize
-
       def build_renderers
         @renderers = []
-        @renderers << Rspec::Usecases::Renderers::PrintJsonRenderer.new if json?
-        @renderers << Rspec::Usecases::Renderers::PrintDebugRenderer.new if debug?
-        @renderers << Rspec::Usecases::Renderers::GenerateMarkdownRenderer.new if markdown?
+        @renderers << Rspec::Usecases::Renderers::PrintJsonRenderer.new(document) if document.json?
+        @renderers << Rspec::Usecases::Renderers::PrintDebugRenderer.new(document) if document.debug?
+        @renderers << Rspec::Usecases::Renderers::GenerateMarkdownRenderer.new(document) if document.markdown?
       end
-
-      # def debug
-      #   puts "renderers                     : #{renderers}"
-      #   puts "render_json                   : #{render_json}"
-      #   puts "render_debug                  : #{render_debug}"
-      #   puts "render_generate_markdown      : #{render_generate_markdown}"
-      # end
     end
   end
 end

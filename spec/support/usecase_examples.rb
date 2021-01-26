@@ -6,7 +6,9 @@ module UsecaseExamples
                               markdown: false,
                               markdown_file: 'generate_markdown.md',
                               markdown_prettier: false,
-                              markdown_open: false)
+                              markdown_open: false,
+                              document_title: 'title',
+                              document_description: 'description')
 
     documentor_settings = {
       usecases: true,
@@ -16,8 +18,8 @@ module UsecaseExamples
       markdown_file: markdown_file,
       markdown_prettier: markdown_prettier,
       markdown_open: markdown_open,
-      document_title: 'title',
-      document_description: 'description'
+      document_title: document_title,
+      document_description: document_description
     }
 
     descendant_children = [

@@ -19,12 +19,19 @@ RSpec.describe Rspec::Usecases::Documentor do
   describe '#constructor' do
     context 'with default parameters' do
       it { is_expected.not_to be_nil }
-      it { is_expected.to have_attributes(json?: false, debug?: false, markdown?: false) }
+    end
+
+    context 'one renderer turned on' do
+      let(:documentor_settings) { { debug: true } }
+
+      it 'has configured renderer' do
+        expect(subject.renderers.length).to eq 1
+        expect(subject.renderers.first).to be_a(Rspec::Usecases::Renderers::PrintDebugRenderer)
+      end
     end
 
     context 'all renderers turned on' do
       let(:documentor_settings) { { json: true , debug: true, markdown: true } }
-      it { is_expected.to have_attributes(json?: true, debug?: true, markdown?: true) }
 
       it 'has configured renderers' do
         expect(subject.renderers.length).to eq 3
@@ -32,6 +39,8 @@ RSpec.describe Rspec::Usecases::Documentor do
     end
 
     context 'rendering' do
+      subject { instance.render }
+
       let(:descendant_children) { [describe, usecase1, usecase2] }
       let(:documentor_settings) do
         { usecases: true,
@@ -47,35 +56,20 @@ RSpec.describe Rspec::Usecases::Documentor do
 
       context 'json' do
         let(:json) { true }
-        it { is_expected.to have_attributes(json?: true, debug?: false, markdown?: false) }
 
-        context 'render' do
-          subject { instance.render }
-
-          it { subject }
-        end
+        it { subject }
       end
 
       context 'debug' do
         let(:debug) { true }
-        it { is_expected.to have_attributes(json?: false, debug?: true, markdown?: false) }
 
-        context 'render' do
-          subject { instance.render }
-
-          it { subject }
-        end
+        it { subject }
       end
 
       context 'markdown' do
         let(:markdown) { true }
-        it { is_expected.to have_attributes(json?: false, debug?: false, markdown?: true) }
 
-        context 'render' do
-          subject { instance.render }
-
-          it { subject }
-        end
+        it { subject }
       end
     end
   end

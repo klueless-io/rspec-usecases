@@ -174,9 +174,10 @@ RSpec.describe Rspec::Usecases::Usecase do
         expect(subject.to_h[:contents]).to include(
           {
             "title": 'code 1',
+            "summary": 'code summary 1',
             "type": 'code',
             "code_type": 'ruby',
-            "source": 'code summary 1',
+            "source": '# some code goes here;',
             "options": default_options
           }
         )
