@@ -28,15 +28,17 @@ module Rspec
           usecase.contents.each { |content| print_usecase_content(content) }
         end
 
+        # rubocop:disable Metrics/AbcSize
         def print_usecase_header(usecase)
           write_line '=' * 100
           write_line "Key               : #{usecase.key}" if usecase.key
           write_line "Title             : #{usecase.title}" if usecase.title
+          write_line "Deep Title        : #{usecase.deep_title}" if usecase.deep_title
           write_line "Usage             : #{usecase.usage}" if usecase.usage
           write_line "Usage Description : #{usecase.usage_description}" if usecase.usage_description
         end
 
-        # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize
+        # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
         def print_usecase_content(content)
           write_line '-' * 100
           write_line "Title             : #{content.title}" if content.title != ''

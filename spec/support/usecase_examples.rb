@@ -45,14 +45,14 @@ module UsecaseExamples
   # describe 'A' do
   #   context 'B' do
   #     context 'C' do
-  #       describe 'Default Title' do
+  #       usecase 'Some Title' do
   #       end
   #     end
   #   end
   # end
   def create_descendant_parents
     double(parent_groups: [
-             double(description: 'Default Title'),
+             #  double(description: 'Default Title'),
              double(description: 'C'),
              double(description: 'B'),
              double(description: 'A')
@@ -62,14 +62,16 @@ module UsecaseExamples
   def create_describe
     double('ExampleGroup',
            metadata: {},
+           description: 'simple describe block',
            example_group: descendant_parents,
            descendants: [])
   end
 
   def create_usecase1
     double('ExampleGroupUsecase',
-           metadata: { usecase: true, description: 'Fuckit' },
+           metadata: { usecase: true },
            name: 'usecase1',
+           description: 'Simple usecase block',
            example_group: descendant_parents,
            descendants: [],
            examples: [])
@@ -81,10 +83,11 @@ module UsecaseExamples
              usecase: true,
              usage: 'MyClass.load',
              usage_description: 'My custom usage description',
-             title: 'My custom title',
+             description: 'My custom title',
              summary: 'My usecase summary'
            },
            name: 'usecase2',
+           description: 'Usecase block with multiple content',
            example_group: descendant_parents,
            descendants: [],
            examples: [
