@@ -19,12 +19,49 @@ RSpec.describe Rspec::Usecases::Document do
   describe '#constructor' do
     context 'with default parameters' do
       it { is_expected.not_to be_nil }
-      it { is_expected.to have_attributes(title: '', description: '', usecases: []) }
+      it do
+        is_expected.to have_attributes(json?: false,
+                                       debug?: false,
+                                       markdown?: false,
+                                       markdown_file: 'generate_markdown.md',
+                                       markdown_prettier?: false,
+                                       markdown_open?: false,
+                                       title: '',
+                                       description: '',
+                                       usecases: [])
+      end
     end
 
     context 'with title and description' do
       let(:documentor_settings) { { document_title: 'title', document_description: 'description' } }
       it { is_expected.to have_attributes(title: 'title', description: 'description') }
+    end
+
+    context 'settings' do
+      context 'with json' do
+        let(:documentor_settings) { { json: true } }
+        it { is_expected.to have_attributes(json?: true) }
+      end
+      context 'with debug' do
+        let(:documentor_settings) { { debug: true } }
+        it { is_expected.to have_attributes(debug?: true) }
+      end
+      context 'with markdown' do
+        let(:documentor_settings) { { markdown: true } }
+        it { is_expected.to have_attributes(markdown?: true) }
+      end
+      context 'with markdown_file' do
+        let(:documentor_settings) { { markdown_file: 'a.txt' } }
+        it { is_expected.to have_attributes(markdown_file: 'a.txt') }
+      end
+      context 'with markdown_prettier' do
+        let(:documentor_settings) { { markdown_prettier: true } }
+        it { is_expected.to have_attributes(markdown_prettier?: true) }
+      end
+      context 'with markdown_open' do
+        let(:documentor_settings) { { markdown_open: true } }
+        it { is_expected.to have_attributes(markdown_open?: true) }
+      end
     end
 
     context 'with one use case' do
@@ -58,6 +95,14 @@ RSpec.describe Rspec::Usecases::Document do
               is_expected.to eq(
                 title: '',
                 description: '',
+                settings: {
+                  debug: false,
+                  json: false,
+                  markdown: false,
+                  markdown_file: 'generate_markdown.md',
+                  markdown_prettier: false,
+                  markdown_open: false
+                },
                 usecases: [{
                   key: 'usecase1',
                   title: 'A B C Default Title',
@@ -81,7 +126,8 @@ RSpec.describe Rspec::Usecases::Document do
                     ]
                   }, {
                     title: 'code 1',
-                    source: 'code summary 1',
+                    summary: 'code summary 1',
+                    source: '# some code goes here;',
                     type: 'code',
                     code_type: 'ruby',
                     options: [
