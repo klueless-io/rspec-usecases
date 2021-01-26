@@ -16,6 +16,11 @@ As a Developer, I can build documentable usecases, so that I easily document usa
 
 - Build Usecase
 
+As a Developer, I can build documentation presentations, so that I can create videos quickly
+
+- https://revealjs.com/
+- https://mofesolapaul.github.io/sectionizr/
+
 ### Tasks next on list
 
 Setup GitHub Action (test and lint)
@@ -26,6 +31,14 @@ Setup GitHub Action (test and lint)
 ## Stories and tasks
 
 ### Stories - completed
+
+As a Developer, I can extend Rspec with code specific documentation extensions, so that I easily build documentation that parses unit tests
+
+As a Developer, I can have component based renderers, so that I easily extend documentation output renders
+
+- Build JSON renderer
+- Build Debug renderer
+- Build Markdown renderer
 
 Remove cooline and jazz_fingers gem from github actions by running from env variable
 
