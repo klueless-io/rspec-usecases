@@ -9,6 +9,8 @@ RSpec.describe Rspec::Usecases::Usecase do
 
   let(:descendant_parents) { double(parent_groups: []) }
   let(:default_options) { [{ 'is_hr': false }] }
+  let(:title_on_usecase) { 'Default Title' }
+  let(:title_on_usecase_override_attribute) { 'Override Title' }
 
   describe '#constructor' do
     context 'with default parameters' do
@@ -45,8 +47,7 @@ RSpec.describe Rspec::Usecases::Usecase do
         double('ExampleGroup',
                metadata: { usecase: true },
                description: 'Some Title',
-               example_group: create_descendant_parents,
-               descendants: [])
+               parent_groups: create_parent_groups('Some Title'))
       end
 
       it {
@@ -60,13 +61,12 @@ RSpec.describe Rspec::Usecases::Usecase do
       }
     end
 
-    context 'usecase has custom title' do
+    context 'usecase has custom override title' do
       let(:usecase_with_title) do
         double('ExampleGroup',
-               metadata: { usecase: true, title: 'Override Title' },
-               description: 'Some Title',
-               example_group: create_descendant_parents,
-               descendants: [])
+               metadata: { usecase: true, title: title_on_usecase_override_attribute },
+               description: title_on_usecase,
+               parent_groups: create_parent_groups(title_on_usecase))
       end
 
       it {
@@ -87,9 +87,7 @@ RSpec.describe Rspec::Usecases::Usecase do
     context 'usecase has no extra attributes' do
       let(:usecase_with_attributes) do
         double('ExampleGroup',
-               metadata: { usecase: true },
-               example_group: descendant_parents,
-               descendants: [])
+               metadata: { usecase: true })
       end
 
       it { is_expected.to have_attributes(summary: '') }
@@ -104,9 +102,7 @@ RSpec.describe Rspec::Usecases::Usecase do
     context 'usecase has summary' do
       let(:usecase_with_attributes) do
         double('ExampleGroup',
-               metadata: { usecase: true, summary: 'My summary' },
-               example_group: descendant_parents,
-               descendants: [])
+               metadata: { usecase: true, summary: 'My summary' })
       end
 
       it { is_expected.to have_attributes(summary: 'My summary') }
@@ -117,9 +113,7 @@ RSpec.describe Rspec::Usecases::Usecase do
     context 'usecase has usage' do
       let(:usecase_with_attributes) do
         double('ExampleGroup',
-               metadata: { usecase: true, usage: 'MyClass.load' },
-               example_group: descendant_parents,
-               descendants: [])
+               metadata: { usecase: true, usage: 'MyClass.load' })
       end
 
       it { is_expected.to have_attributes(usage: 'MyClass.load') }
@@ -130,9 +124,7 @@ RSpec.describe Rspec::Usecases::Usecase do
     context 'usecase has usage description' do
       let(:usecase_with_attributes) do
         double('ExampleGroup',
-               metadata: { usecase: true, usage_description: 'MyClass.load - description' },
-               example_group: descendant_parents,
-               descendants: [])
+               metadata: { usecase: true, usage_description: 'MyClass.load - description' })
       end
 
       it { is_expected.to have_attributes(usage_description: 'MyClass.load - description') }
@@ -164,7 +156,7 @@ RSpec.describe Rspec::Usecases::Usecase do
         double('ExampleGroup',
                metadata: { usecase: true },
                description: 'usecase with content',
-               example_group: descendant_parents,
+               parent_groups: create_parent_groups('usecase with content'),
                examples: [
                  create_content_outcome1,
                  create_content_code1

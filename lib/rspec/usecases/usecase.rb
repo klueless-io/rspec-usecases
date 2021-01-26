@@ -99,8 +99,8 @@ module Rspec
       end
 
       def build_deep_title(example_group)
-        # example_group.example_group.parent_groups.reverse.map { |g| g.description }
-        example_group.example_group.parent_groups.reverse.each do |group|
+        # example_group.parent_groups.reverse[0..-2].map { |g| g.description }
+        example_group.parent_groups.reverse[0..-2].each do |group|
           @deep_title = if @deep_title.length.zero?
                           group.description
                         else
