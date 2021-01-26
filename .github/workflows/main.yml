@@ -26,8 +26,8 @@ jobs:
         gem install bundler -v 2.2.5
         bundle install
     - name: Run tests
-      env:
-        USAGE_CI: 'github_actions'
+      env: # Or as an environment variable
+        USAGE_CI: 'not_a_ci'
       run: bundle exec rspec
     - name: Run rubocop
       run: bundle exec rubocop
