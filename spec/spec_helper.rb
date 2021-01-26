@@ -28,7 +28,7 @@ RSpec.configure do |config|
 
   # declare an exclusion filter (you must turn this setting to false if you want to specifically run usecases tests)
   is_continuous_integration = ENV['USAGE_CI'].is_a?(String) && %w[github github_actions].include?(ENV['USAGE_CI'].downcase)
-  is_exclude_usecases_in_development = true
+  is_exclude_usecases_in_development = false
   config.filter_run_excluding usecases: (is_continuous_integration || is_exclude_usecases_in_development)
 
   config.extend Rspec::Usecases
