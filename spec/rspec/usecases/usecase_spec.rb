@@ -17,6 +17,7 @@ RSpec.describe Rspec::Usecases::Usecase do
       it {
         is_expected.to have_attributes(key: 'key1',
                                        title: '',
+                                       deep_title: '',
                                        usage: '',
                                        usage_description: '',
                                        contents: [])
@@ -26,6 +27,7 @@ RSpec.describe Rspec::Usecases::Usecase do
         expect(subject.to_h).to eq(
           key: 'key1',
           title: '',
+          deep_title: '',
           summary: '',
           usage: '',
           usage_description: '',
@@ -46,9 +48,15 @@ RSpec.describe Rspec::Usecases::Usecase do
                descendants: [])
       end
 
-      it { is_expected.to have_attributes(title: 'A B C Default Title') }
+      it {
+        is_expected.to have_attributes(title: 'Default Title',
+                                       deep_title: 'A B C Default Title')
+      }
 
-      it { expect(subject.to_h).to include(title: 'A B C Default Title') }
+      it {
+        expect(subject.to_h).to include(title: 'Default Title',
+                                        deep_title: 'A B C Default Title')
+      }
     end
 
     context 'usecase has custom title' do

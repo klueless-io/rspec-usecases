@@ -12,6 +12,9 @@ module Rspec
       # title
       attr_reader :title
 
+      # deep title is constructed by concatenating the chain of parents titles
+      attr_reader :deep_title
+
       # summary
       attr_reader :summary
 
@@ -27,6 +30,7 @@ module Rspec
       def initialize(key)
         @key = key
         @title = ''
+        @deep_title = ''
         @summary = ''
         @usage = ''
         @usage_description = ''
@@ -51,6 +55,7 @@ module Rspec
         {
           key: key,
           title: title,
+          deep_title: deep_title,
           summary: summary,
           usage: usage,
           usage_description: usage_description,
@@ -61,6 +66,7 @@ module Rspec
       def debug
         puts "key                           : #{key}"
         puts "title                         : #{title}"
+        puts "deep_title                    : #{deep_title}"
         puts "summary                       : #{summary}"
         puts "usage                         : #{usage}"
         puts "usage_description             : #{usage_description}"
@@ -86,16 +92,18 @@ module Rspec
       def build_title(example_group)
         return if title != ''
 
-        if example_group.metadata[:title]
-          @title = example_group.metadata[:title]
-        else
-          example_group.example_group.parent_groups.reverse.each do |group|
-            @title = if @title.length.zero?
-                       group.description
-                     else
-                       "#{@title} #{group.description}"
-                     end
-          end
+        @title = example_group.metadata[:title] || example_group.example_group.parent_groups.first&.description
+
+        build_deep_title(example_group)
+      end
+
+      def build_deep_title(example_group)
+        example_group.example_group.parent_groups.reverse.each do |group|
+          @deep_title = if @deep_title.length.zero?
+                          group.description
+                        else
+                          "#{@deep_title} #{group.description}"
+                        end
         end
       end
     end
