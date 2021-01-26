@@ -3,7 +3,6 @@
 require 'pry'
 require 'bundler/setup'
 require 'rspec/usecases'
-# require 'k_usecases'
 require 'support/usecase_examples'
 
 RSpec.configure do |config|
@@ -25,26 +24,25 @@ RSpec.configure do |config|
   # Usecase Documentor
   # ----------------------------------------------------------------------
 
-  # KUsecases.configure(config)
+  Rspec::Usecases.configure(config)
 
-  # config.extend KUsecases
+  config.extend Rspec::Usecases
 
-  # config.before(:context, :usecases) do
-  #   puts '-' * 70
-  #   puts self.class
-  #   puts '-' * 70
-  #   @documentor = KUsecases::Documentor.new(self.class)
-  # end
+  config.before(:context, :usecases) do
+    puts '-' * 70
+    puts self.class
+    puts '-' * 70
+    @documentor = Rspec::Usecases::Documentor.new(self.class)
+  end
 
-  # config.after(:context, :usecases) do
-  #   @documentor.render
-  #   puts '-' * 70
-  #   puts self.class
-  #   puts '-' * 70
-  # end
+  config.after(:context, :usecases) do
+    @documentor.render
+    puts '-' * 70
+    puts self.class
+    puts '-' * 70
+  end
 end
 
 def fixture_path(name)
-  # File.join(File.expand_path("../fixtures", __FILE__), name)
   File.join(File.expand_path('fixtures', __dir__), name)
 end
