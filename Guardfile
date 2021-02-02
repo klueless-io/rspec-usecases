@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'guard/rspec/dsl'
 guard :bundler, cmd: 'bundle install' do
   watch('Gemfile')
   watch('rspec_usecases.gemspec')

@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-# require 'rspec/usecases/renderers/base_renderer'
-
 module Rspec
   module Usecases
-    # Renderers write out meta data in various output formats. JSON, Debug, Markdown etc.
-    module Renderers
-      # Base renderer contains helper methods
-      class BaseRenderer
+    # Generators build meta data in various output formats. JSON, Debug, Markdown etc.
+    module Generator
+      # Base generator contains helper methods
+      class BaseGenerator
         attr_accessor :document
         attr_accessor :output
+        attr_accessor :options
 
-        def initialize(document)
+        def initialize(document, options = nil)
           @document = document
+          @options = options
           @output = ''
         end
 
@@ -24,6 +24,11 @@ module Rspec
         # Write line feed character ot output buffer
         def write_lf
           @output = "#{@output}\n"
+        end
+
+        # Print output to console
+        def print_output
+          puts @output
         end
 
         # Write the file, force creation of folder if needed

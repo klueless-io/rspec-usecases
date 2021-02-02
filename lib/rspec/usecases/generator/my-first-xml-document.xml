@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<first-xml-document>
+  <salutation>
+    <hello>
+      <world we-are-the='world' />
+      <world we-are-the='children' />
+    </hello>
+  </salutation>
+  <people>
+    <person>
+      <first-name>david</first-name>
+      <last-name>cruwys</last-name>
+    </person>
+    <person>
+      <first-name>デビッド</first-name>
+      <last-name>クルーーズ</last-name>
+    </person>
+  </people
+  <datum>
+    <data id='1'>
+    <![CDATA[
+    
+    shit loads of data
+    
+    ]]>
+    </data>
+    <data id='2'>
+    <![CDATA[
+    
+    shit loads of data2
+    
+    ]]>
+    </data>
+  </datum>
+  <books>
+    <book name='blah'>
+      <author first-name='david' last-name='cruwys' />
+    </book>
+    <book lang='jp' name='japanese book'>
+      <author first-name='デビッド' last-name='クルーーズ' />
+    </book>
+  </books>
+</first-xml-document>
