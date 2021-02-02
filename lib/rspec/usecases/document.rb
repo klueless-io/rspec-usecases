@@ -67,26 +67,6 @@ module Rspec
         }
       end
 
-      def debug
-        puts "json               : #{@json}"
-        puts "debug              : #{@debug}"
-        puts "markdown           : #{@markdown}"
-        puts "markdown_file      : #{@markdown_file}"
-        puts "markdown_prettier  : #{@markdown_prettier}"
-        puts "markdown_open      : #{@markdown_open}"
-        puts "title              : #{@title}"
-        puts "description        : #{@description}"
-
-        usecases.each_with_index do |u, i|
-          if i.zero?
-            puts '-[ Usecases ] --------------------------------------------------------'
-          else
-            puts '----------------------------------------------------------------------'
-          end
-          u.debug(format: :simple)
-        end
-      end
-
       private
 
       # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize
