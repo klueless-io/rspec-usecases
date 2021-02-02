@@ -4,7 +4,7 @@ RSpec.describe Regexp,
                :usecases,
                document_title: 'Ruby RegExp by example',
                document_description: 'Working through various regular expression scenarios using Ruby syntax',
-               markdown: { write: true, open: true, file: 'docs/regexp-01.md', pretty: true } do
+               markdown: { write: false, open: false, file: 'docs/regexp-01.md', pretty: true } do
 
   # usecase '',
   #         title: 'Alternation (OR)',
