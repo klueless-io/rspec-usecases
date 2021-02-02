@@ -23,20 +23,9 @@ module Rspec
 
       def to_h
         {
-          # code: code,
           code_type: code_type,
           note: note
         }.merge(super.to_h)
-      end
-
-      def debug(format: :detail)
-        super(format: format)
-
-        return unless format == :detail
-
-        # puts "code                          : #{code}"
-        puts "code_type                     : #{code_type}"
-        puts "note                       : #{note}"
       end
     end
   end

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# require 'rspec/usecases/usecase'
-
 module Rspec
   module Usecases
     # A usecase stores documentation for a single code usage scenario.
@@ -74,70 +72,6 @@ module Rspec
           usecases: usecases.map(&:to_h)
         }
       end
-
-      def debug(format: :detail)
-        debug_simple if %i[simple detail].include?(format)
-        debug_detail if %i[detail].include?(format)
-      end
-
-      # rubocop:disable Metrics/AbcSize
-      def debug_simple
-        puts "key                           : #{key}"
-        puts "title                         : #{title}"
-
-        if contents.length.positive?
-          puts '-[ Contents ] --------------------------------------------------------'
-          contents.each do |c|
-            c.debug format: :simple
-          end
-          puts '-[ Content - Finished ] ----------------------------------------------'
-        end
-
-        if usecases.length.positive?
-          puts '-[ Nested Usecases ] -------------------------------------------------'
-          usecases.each do |c|
-            c.debug format: :simple
-          end
-          puts '-[ Nested Usecases - Finished ] --------------------------------------'
-        end
-
-        usecases.each_with_index do |u, i|
-          if i.zero?
-            puts '-[ Nested Usecases ] -------------------------------------------------'
-          else
-            puts '----------------------------------------------------------------------'
-          end
-          u.debug format: :simple
-        end
-      end
-      # rubocop:enable Metrics/AbcSize
-
-      # rubocop:disable Metrics/AbcSize
-      def debug_detail
-        puts "deep_title                    : #{deep_title}"
-        puts "summary                       : #{summary}"
-        puts "usage                         : #{usage}"
-        puts "usage_description             : #{usage_description}"
-
-        contents.each_with_index do |c, i|
-          if i.zero?
-            puts '-[ Contents ] --------------------------------------------------------'
-          else
-            puts '----------------------------------------------------------------------'
-          end
-          c.debug format: :simple
-        end
-
-        usecases.each_with_index do |u, i|
-          if i.zero?
-            puts '-[ Nested Usecases ] -----------------------------------------------------'
-          else
-            puts '----------------------------------------------------------------------'
-          end
-          u.debug format: :simple
-        end
-      end
-      # rubocop:enable Metrics/AbcSize
 
       def add_content(example)
         content = Rspec::Usecases::BaseContent.parse(example)

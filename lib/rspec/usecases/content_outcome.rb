@@ -20,14 +20,6 @@ module Rspec
           note: note
         }.merge(super.to_h)
       end
-
-      def debug(format: :detail)
-        super(format: format)
-
-        return unless format == :detail
-
-        puts "note                          : #{note}"
-      end
     end
   end
 end
