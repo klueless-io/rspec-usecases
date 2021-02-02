@@ -50,6 +50,10 @@ As a Developer, I can extract code and other content from unit test, so that I c
 
 ### Tasks - completed
 
+Move content.\* namespace called contents
+
+- Content items take on the same role as Rspec::Example
+
 Setup RubyGems and RubyDoc
 
 - Build and deploy gem to [rubygems.org](https://rubygems.org/gems/rspec-usecases)

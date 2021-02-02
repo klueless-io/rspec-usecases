@@ -74,7 +74,7 @@ module Rspec
       end
 
       def add_content(example)
-        content = Rspec::Usecases::BaseContent.parse(example)
+        content = Rspec::Usecases::Contents::BaseContent.parse(example)
         @contents << content unless content.nil?
       end
 
