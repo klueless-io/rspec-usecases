@@ -4,6 +4,7 @@ require 'pry'
 require 'bundler/setup'
 require 'rspec/usecases'
 require 'support/usecase_examples'
+require 'support/shared_comprehensive_usecases'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -33,18 +34,19 @@ RSpec.configure do |config|
 
   config.extend Rspec::Usecases
 
+  # Documentor only comes into existence if :usecases exists
   config.before(:context, :usecases) do
-    puts '-' * 70
-    puts self.class
-    puts '-' * 70
+    # puts '-' * 70
+    # puts self.class
+    # puts '-' * 70
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
 
   config.after(:context, :usecases) do
-    @documentor.render
-    puts '-' * 70
-    puts self.class
-    puts '-' * 70
+    @documentor.render unless @documentor.document.skip_render?
+    # puts '-' * 70
+    # puts self.class
+    # puts '-' * 70
   end
 end
 

@@ -1,0 +1,172 @@
+{
+  "document": {
+    "title": "json title",
+    "description": "json description"
+  },
+  "usecases": [
+    {
+      "key": "RSpec::ExampleGroups::RspecUsecasesGeneratorJsonGenerator::ValidLevel1Usecase1",
+      "title": "valid level 1 usecase #1",
+      "deep_title": "Rspec::Usecases::Generator::JsonGenerator valid level 1 usecase #1",
+      "summary": "first encountered usecases",
+      "usage": "SomeClass.some_method",
+      "usage_description": "Calls some_method on SomeClass",
+      "contents": [
+        {
+          "note": "",
+          "title": "",
+          "type": "outcome",
+          "source": "# Title should be blank on this outcome",
+          "is_hr": false
+        },
+        {
+          "note": "",
+          "title": "this outcome has a title",
+          "type": "outcome",
+          "source": "# Source code goes here",
+          "is_hr": false
+        },
+        {
+          "note": "outcome note",
+          "title": "this outcome has a note",
+          "type": "outcome",
+          "source": "# Source code goes here",
+          "is_hr": false
+        },
+        {
+          "note": "",
+          "title": "this outcome has an hr",
+          "type": "outcome",
+          "source": "#",
+          "is_hr": true
+        },
+        {
+          "code_type": "",
+          "summary": "first encountered usecases",
+          "title": "this is some unknown code",
+          "type": "code",
+          "source": "# Source code goes here",
+          "is_hr": false
+        },
+        {
+          "code_type": "",
+          "summary": "first encountered usecases",
+          "title": "this is some ruby code",
+          "type": "code",
+          "source": "# Source code goes here",
+          "is_hr": false
+        }
+      ],
+      "usecases": [
+        {
+          "key": "RSpec::ExampleGroups::RspecUsecasesGeneratorJsonGenerator::ValidLevel1Usecase1::ValidLevel2Usecase11",
+          "title": "valid level 2 usecase #1.1",
+          "deep_title": "Rspec::Usecases::Generator::JsonGenerator valid level 1 usecase #1 valid level 2 usecase #1.1",
+          "summary": "override the summary",
+          "usage": "",
+          "usage_description": "",
+          "contents": [
+
+          ],
+          "usecases": [
+
+          ]
+        },
+        {
+          "key": "RSpec::ExampleGroups::RspecUsecasesGeneratorJsonGenerator::ValidLevel1Usecase1::ValidLevel2Usecase12",
+          "title": "valid level 2 usecase #1.2",
+          "deep_title": "Rspec::Usecases::Generator::JsonGenerator valid level 1 usecase #1 valid level 2 usecase #1.2",
+          "summary": "",
+          "usage": "",
+          "usage_description": "",
+          "contents": [
+
+          ],
+          "usecases": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "key": "RSpec::ExampleGroups::RspecUsecasesGeneratorJsonGenerator::SomeMethod::ValidLevel1Usecase2",
+      "title": "valid level 1 usecase #2",
+      "deep_title": "Rspec::Usecases::Generator::JsonGenerator #some_method valid level 1 usecase #2",
+      "summary": "",
+      "usage": "",
+      "usage_description": "",
+      "contents": [
+
+      ],
+      "usecases": [
+        {
+          "key": "RSpec::ExampleGroups::RspecUsecasesGeneratorJsonGenerator::SomeMethod::ValidLevel1Usecase2::FlattenMeOutOfTheHierarchy::ValidLevel2Usecase21",
+          "title": "valid level 2 usecase #2.1",
+          "deep_title": "Rspec::Usecases::Generator::JsonGenerator #some_method valid level 1 usecase #2 flatten me out of the hierarchy valid level 2 usecase #2.1",
+          "summary": "",
+          "usage": "",
+          "usage_description": "",
+          "contents": [
+
+          ],
+          "usecases": [
+
+          ]
+        },
+        {
+          "key": "RSpec::ExampleGroups::RspecUsecasesGeneratorJsonGenerator::SomeMethod::ValidLevel1Usecase2::ValidLevel2Usecase22",
+          "title": "valid level 2 usecase #2.2",
+          "deep_title": "Rspec::Usecases::Generator::JsonGenerator #some_method valid level 1 usecase #2 valid level 2 usecase #2.2",
+          "summary": "",
+          "usage": "",
+          "usage_description": "",
+          "contents": [
+            {
+              "code_type": "",
+              "summary": "",
+              "title": "some code code",
+              "type": "code",
+              "source": "# code goes here",
+              "is_hr": false
+            },
+            {
+              "code_type": "ruby",
+              "summary": "",
+              "title": "some ruby code",
+              "type": "code",
+              "source": "# ruby goes here",
+              "is_hr": false
+            },
+            {
+              "code_type": "css",
+              "summary": "",
+              "title": "some css code",
+              "type": "code",
+              "source": "# css goes here",
+              "is_hr": false
+            },
+            {
+              "code_type": "javascript",
+              "summary": "",
+              "title": "some js code",
+              "type": "code",
+              "source": "# js goes here",
+              "is_hr": false
+            },
+            {
+              "code_type": "javascript",
+              "summary": "",
+              "title": "some javascript code",
+              "type": "code",
+              "source": "# javascript  goes here",
+              "is_hr": false
+            }
+          ],
+          "usecases": [
+
+          ]
+        }
+      ]
+    }
+  ]
+}

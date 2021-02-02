@@ -16,7 +16,7 @@ RSpec.describe Array,
             usage: "#{described_class.name}.load",
             usage_description: "#{described_class.name}.load - description goes here" do
 
-      code 'Initialize an array' do
+      ruby 'Initialize an array' do
         ar = [1,2,3]
       end
 

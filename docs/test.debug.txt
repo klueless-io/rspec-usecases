@@ -1,0 +1,93 @@
+****************************************************************************************************
+[32mTitle                         [0m: debug title
+[32mDescription                   [0m: debug description
+====================================================================================================
+[32mKey                           [0m: RSpec::ExampleGroups::RspecUsecasesGeneratorDebugGenerator::ValidLevel1Usecase1
+[32mTitle                         [0m: valid level 1 usecase #1
+[32mDeep Title                    [0m: Rspec::Usecases::Generator::DebugGenerator valid level 1 usecase #1
+[32mSummary                       [0m: first encountered usecases
+[32mUsage                         [0m: SomeClass.some_method
+[32mUsage Description             [0m: Calls some_method on SomeClass
+----------------------------------------------------------------------------------------------------
+  [32mType                        [0m: outcome
+  # Title should be blank on this outcome
+----------------------------------------------------------------------------------------------------
+  [32mTitle                       [0m: this outcome has a title
+  [32mType                        [0m: outcome
+  # Source code goes here
+----------------------------------------------------------------------------------------------------
+  [32mTitle                       [0m: this outcome has a note
+  [32mType                        [0m: outcome
+  [32mNote                        [0m: outcome note
+  # Source code goes here
+----------------------------------------------------------------------------------------------------
+  [32mTitle                       [0m: this outcome has an hr
+  [32mType                        [0m: outcome
+  #
+----------------------------------------------------------------------------------------------------
+  [32mTitle                       [0m: this is some unknown code
+  [32mType                        [0m: code
+  # Source code goes here
+----------------------------------------------------------------------------------------------------
+  [32mTitle                       [0m: this is some ruby code
+  [32mType                        [0m: code
+  # Source code goes here
+====================================================================================================
+  [32mKey                         [0m: RSpec::ExampleGroups::RspecUsecasesGeneratorDebugGenerator::ValidLevel1Usecase1::ValidLevel2Usecase11
+  [32mTitle                       [0m: valid level 2 usecase #1.1
+  [32mDeep Title                  [0m: Rspec::Usecases::Generator::DebugGenerator valid level 1 usecase #1 valid level 2 usecase #1.1
+  [32mSummary                     [0m: override the summary
+  [32mUsage                       [0m: 
+  [32mUsage Description           [0m: 
+====================================================================================================
+  [32mKey                         [0m: RSpec::ExampleGroups::RspecUsecasesGeneratorDebugGenerator::ValidLevel1Usecase1::ValidLevel2Usecase12
+  [32mTitle                       [0m: valid level 2 usecase #1.2
+  [32mDeep Title                  [0m: Rspec::Usecases::Generator::DebugGenerator valid level 1 usecase #1 valid level 2 usecase #1.2
+  [32mSummary                     [0m: 
+  [32mUsage                       [0m: 
+  [32mUsage Description           [0m: 
+====================================================================================================
+[32mKey                           [0m: RSpec::ExampleGroups::RspecUsecasesGeneratorDebugGenerator::SomeMethod::ValidLevel1Usecase2
+[32mTitle                         [0m: valid level 1 usecase #2
+[32mDeep Title                    [0m: Rspec::Usecases::Generator::DebugGenerator #some_method valid level 1 usecase #2
+[32mSummary                       [0m: 
+[32mUsage                         [0m: 
+[32mUsage Description             [0m: 
+====================================================================================================
+  [32mKey                         [0m: RSpec::ExampleGroups::RspecUsecasesGeneratorDebugGenerator::SomeMethod::ValidLevel1Usecase2::FlattenMeOutOfTheHierarchy::ValidLevel2Usecase21
+  [32mTitle                       [0m: valid level 2 usecase #2.1
+  [32mDeep Title                  [0m: Rspec::Usecases::Generator::DebugGenerator #some_method valid level 1 usecase #2 flatten me out of the hierarchy valid level 2 usecase #2.1
+  [32mSummary                     [0m: 
+  [32mUsage                       [0m: 
+  [32mUsage Description           [0m: 
+====================================================================================================
+  [32mKey                         [0m: RSpec::ExampleGroups::RspecUsecasesGeneratorDebugGenerator::SomeMethod::ValidLevel1Usecase2::ValidLevel2Usecase22
+  [32mTitle                       [0m: valid level 2 usecase #2.2
+  [32mDeep Title                  [0m: Rspec::Usecases::Generator::DebugGenerator #some_method valid level 1 usecase #2 valid level 2 usecase #2.2
+  [32mSummary                     [0m: 
+  [32mUsage                       [0m: 
+  [32mUsage Description           [0m: 
+----------------------------------------------------------------------------------------------------
+    [32mTitle                     [0m: some code code
+    [32mType                      [0m: code
+    # code goes here
+----------------------------------------------------------------------------------------------------
+    [32mTitle                     [0m: some ruby code
+    [32mType                      [0m: code
+    [32mCode Type                 [0m: ruby
+    # ruby goes here
+----------------------------------------------------------------------------------------------------
+    [32mTitle                     [0m: some css code
+    [32mType                      [0m: code
+    [32mCode Type                 [0m: css
+    # css goes here
+----------------------------------------------------------------------------------------------------
+    [32mTitle                     [0m: some js code
+    [32mType                      [0m: code
+    [32mCode Type                 [0m: javascript
+    # js goes here
+----------------------------------------------------------------------------------------------------
+    [32mTitle                     [0m: some javascript code
+    [32mType                      [0m: code
+    [32mCode Type                 [0m: javascript
+    # javascript  goes here

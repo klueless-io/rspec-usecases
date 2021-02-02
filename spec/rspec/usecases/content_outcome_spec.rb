@@ -2,25 +2,39 @@
 
 require 'spec_helper'
 
-RSpec.describe Rspec::Usecases::ContentOutcome do
-  subject { instance }
+RSpec.describe Rspec::Usecases::ContentOutcome, :usecases do
+  before(:context, :usecases) do
+    @documentor = Rspec::Usecases::Documentor.new(self.class)
+  end
 
-  let(:instance) { Rspec::Usecases::Content.parse(example) }
+  let(:document) { @documentor.document }
 
-  describe '#parse' do
-    let(:example) { create_content_outcome1 }
+  let(:usecase) { document.usecases[0] }
+  let(:usecase_outcome) { usecase.contents[0] }
+  let(:usecase_code) { usecase.contents[1] }
 
-    context 'with default parameters' do
-      it { is_expected.not_to be_nil }
-      it { is_expected.to be_a Rspec::Usecases::ContentOutcome }
+  context 'handle content and content_outcome differences' do
+    context 'nil description' do
+      subject { usecase_outcome }
       it {
-        is_expected.to have_attributes(title: 'outcome 1',
-                                       summary: 'outcome summary 1',
-                                       type: 'outcome')
+        is_expected.to be_a(Rspec::Usecases::ContentOutcome)
+          .and have_attributes(note: '',
+                               title: '',
+                               type: 'outcome',
+                               source: '# Do nothing',
+                               is_hr: false)
       }
+    end
+  end
 
-      # it { puts subject.to_h }
-      # it { puts subject.debug }
+  # ----------------------------------------------------------------------
+  # configured usecases for the tests above
+  # ----------------------------------------------------------------------
+
+  usecase 'usecase: handle content and outcome differences' do
+    # aka :usecase_outcome
+    outcome do
+      # Do nothing
     end
   end
 end
