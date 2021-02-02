@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'rspec/usecases/version'
-require 'rspec/usecases/usecase'
 require 'rspec/usecases/configure'
 require 'rspec/usecases/contents/base_content'
 require 'rspec/usecases/contents/code'
 require 'rspec/usecases/contents/outcome'
+require 'rspec/usecases/groups/usecase'
 require 'rspec/usecases/document'
 require 'rspec/usecases/documentor'
 require 'rspec/usecases/generator/base_generator'

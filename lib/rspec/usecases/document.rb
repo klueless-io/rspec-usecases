@@ -137,7 +137,7 @@ module Rspec
         # puts "name            : #{example_group.name}"
         # puts "entering level  : #{level}"
         # if example_group.metadata[:usecase] == true
-        #   usecase = Rspec::Usecases::Usecase.parse(example_group.name, example_group)
+        #   usecase = Rspec::Usecases::Groups::Usecase.parse(example_group.name, example_group)
         #   return [usecase]
         # end
 
@@ -148,7 +148,7 @@ module Rspec
         example_group.children.each do |child_example_group|
           if child_example_group.metadata[:usecase] == true
             # puts 'use case found'
-            usecase = Rspec::Usecases::Usecase.parse(child_example_group.name, child_example_group)
+            usecase = Rspec::Usecases::Groups::Usecase.parse(child_example_group.name, child_example_group)
 
             child_usecases = flatten_usecase_hierarchy(child_example_group, level + 1)
             # puts "child_usecases  : #{child_usecases.length}"

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-# [17] pry(Rspec::Usecases::Usecase)> a.file_path
-# => "./spec/samples/nesting_spec.rb"
-# [18] pry(Rspec::Usecases::Usecase)> a.location
-# => "./spec/samples/nesting_spec.rb:38"
 RSpec.describe 'Nesting', 
                :usecases,
                :jsonX,
