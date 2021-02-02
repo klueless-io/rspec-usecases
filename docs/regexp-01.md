@@ -2,22 +2,55 @@
 
 Working through various regular expression scenarios using Ruby syntax
 
-## Character classes X
+## Character classes
 
-With a "character class", also called "character set", you can tell the regex engine to match only one out of several characters
+#### match index `=~`
 
-#### =~ for match index and \$~ for match data
+```ruby
+source = 'abcdefghijklmnopqrstuvwxyz'
 
-The operator =~ returns the index of the first match (nil if no match) and stores the MatchData in the global variable \$~
+label_value('source =~ /[aeiou]/', source =~ /[aeiou]/)
+label_value('source =~ /[crazy]/', source =~ /[crazy]/)
+label_value('source =~ /[12345]/', source =~ /[12345]/)
+```
+
+```ruby
+# source =~ /[aeiou]/           : 0
+# source =~ /[crazy]/           : 0
+# source =~ /[12345]/           : nil
+```
+
+#### global variable `$~` for MatchData
 
 ```ruby
 source = 'abcdefghijklmnopqrstuvwxyz'
 
 puts source =~ /[aeiou]/
-
-# 0
-
 puts $~
+puts source =~ /[12345]/
+puts $~
+puts source =~ /[d]/
+puts $~
+```
 
+```ruby
+# 0
 # a
+# 3
+# d
+```
+
+#### match() for MatchData
+
+```ruby
+source = 'abcdefghijklmnopqrstuvwxyz'
+
+puts source.match(/[aeiou]/)
+puts source.match(/[12345]/)
+puts source.match(/[d]/)
+```
+
+```ruby
+# a
+# nil
 ```

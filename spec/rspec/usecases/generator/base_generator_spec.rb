@@ -2,20 +2,23 @@
 
 require 'spec_helper'
 
-RSpec.describe Rspec::Usecases::Renderers::BaseRenderer do
+RSpec.describe Rspec::Usecases::Generator::BaseGenerator, :usecases do
+  before(:context, :usecases) do
+    @documentor = Rspec::Usecases::Documentor.new(self.class)
+  end
+
   subject { instance }
 
+  let(:document) { @documentor.document }
   let(:instance) { described_class.new(document) }
-
-  # Build a document
-  let(:document) { Rspec::Usecases::Document.new(example_group) }
-  let(:example_group) { create_complex_document(document_title: 'some document') }
-  let(:descendant_parents) { create_descendant_parents }
 
   describe '#constructor' do
     context 'with default parameters' do
       it { is_expected.not_to be_nil }
-      it { is_expected.to have_attributes(output: '', document: have_attributes(title: 'some document')) }
+      it {
+        is_expected.to have_attributes(output: '',
+                                       options: nil)
+      }
     end
   end
 
@@ -51,15 +54,15 @@ RSpec.describe Rspec::Usecases::Renderers::BaseRenderer do
         expect(output).to eq("def initialize(a)\n# comment\nend\n")
       end
 
-      # WARNING: the following functional tests should only be enabled for manual testing
+      # # WARNING: the following functional tests should only be enabled for manual testing
       # describe 'functional tests' do
       #   describe 'open in vscode' do
-      #     # it 'should open the tempfile in VSCode' do
-      #     #   # puts tempfile.path
-      #     #   # puts File.read(tempfile.path)
-      #     #   instance.open_file_in_vscode(tempfile.path)
-      #     #   puts File.read(tempfile.path)
-      #     # end
+      #     it 'should open the tempfile in VSCode' do
+      #       # puts tempfile.path
+      #       # puts File.read(tempfile.path)
+      #       instance.open_file_in_vscode(tempfile.path)
+      #       puts File.read(tempfile.path)
+      #     end
       #   end
       # end
     end

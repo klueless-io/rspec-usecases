@@ -2,27 +2,84 @@
 
 require 'spec_helper'
 
-RSpec.describe Rspec::Usecases::ContentCode do
-  subject { instance }
+RSpec.describe Rspec::Usecases::ContentCode, :usecases do
+  before(:context, :usecases) do
+    @documentor = Rspec::Usecases::Documentor.new(self.class)
+  end
 
-  let(:instance) { Rspec::Usecases::Content.parse(example) }
+  let(:document) { @documentor.document }
 
-  describe '#parse' do
-    let(:example) { create_content_code1 }
+  let(:usecase) { document.usecases[0] }
+  let(:usecase_code) { usecase.contents[0] }
+  let(:usecase_ruby) { usecase.contents[1] }
+  let(:usecase_css) { usecase.contents[2] }
+  let(:usecase_js) { usecase.contents[3] }
+  let(:usecase_javascript) { usecase.contents[4] }
 
-    context 'with default parameters' do
-      it { is_expected.not_to be_nil }
-      it { is_expected.to be_a Rspec::Usecases::ContentCode }
-      it {
-        is_expected.to have_attributes(title: 'code 1',
-                                       type: 'code',
-                                       code_type: 'ruby',
-                                       summary: 'code summary 1',
-                                       source: '# some code goes here;')
-      }
-
-      # it { puts subject.to_h }
-      # it { puts subject.debug }
+  context 'with code blocks' do
+    context 'general purpose code' do
+      subject { usecase_code }
+      it { is_expected.to have_attributes(source: "puts 'some code'", code_type: '') }
+    end
+    context 'ruby code' do
+      subject { usecase_ruby }
+      it { is_expected.to have_attributes(source: "puts 'some ruby'", code_type: 'ruby') }
+    end
+    context 'css' do
+      subject { usecase_css }
+      it { is_expected.to have_attributes(source: "puts 'some css'", code_type: 'css') }
+    end
+    context 'js code' do
+      subject { usecase_js }
+      it { is_expected.to have_attributes(source: "puts 'some js'", code_type: 'javascript') }
+    end
+    context 'javascript code' do
+      subject { usecase_javascript }
+      it { is_expected.to have_attributes(source: "puts 'some javascript'", code_type: 'javascript') }
     end
   end
+
+  # ----------------------------------------------------------------------
+  # configured usecases for the tests above
+  # ----------------------------------------------------------------------
+
+  # aka: usecase
+  usecase 'usecase: handle code blocks' do
+    # aka :usecase_code
+    code do
+      puts 'some code'
+    end
+    # aka :usecase_ruby
+    ruby do
+      puts 'some ruby'
+    end
+    # aka :usecase_css
+    css do
+      puts 'some css'
+    end
+    # aka :usecase_js
+    js do
+      puts 'some js'
+    end
+    # aka :usecase_javascript
+    javascript do
+      puts 'some javascript'
+    end
+  end
+
+  # ruby :extract_comment do
+  # #  a = 'hello'
+  # #  # I'm a real comment
+  # #  if a
+  # #    puts "#{a}"
+  # #  end
+  # end
+
+  # css :extract_heredoc do
+  #   <<-CSS
+  #   .some_class {
+  #     color: blue
+  #   }
+  #   CSS
+  # end
 end

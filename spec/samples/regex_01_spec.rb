@@ -2,14 +2,9 @@
 
 RSpec.describe Regexp, 
                :usecases,
-               :jsonX,
-               :debug,
-               :markdownX,
-               :markdown_prettier,
-               :markdown_open,
-               markdown_file: 'docs/regexp-01.md',
                document_title: 'Ruby RegExp by example',
-               document_description: 'Working through various regular expression scenarios using Ruby syntax' do
+               document_description: 'Working through various regular expression scenarios using Ruby syntax',
+               markdown: { write: true, open: true, file: 'docs/regexp-01.md', pretty: true } do
 
   # usecase '',
   #         title: 'Alternation (OR)',
@@ -22,36 +17,82 @@ RSpec.describe Regexp,
 
   #     puts source =~ /[aeiou]/
   #   end
+  # content '=~', :hr, summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
+  #   # 0
+  #   # true
+  #   #
+  #   # true
+  # end
+  # content '=~', summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
+  #   # 0
+  #   # true
+  #   #
+  #   # true
   # end
 
-  usecase 'Character classes',
-    summary: 'With a "character class", also called "character set", you can tell the regex engine to match only one out of several characters' do
 
-    ruby '=~ for match index and $~ for match data',
-          summary: 'The operator =~ returns the index of the first match (nil if no match) and stores the MatchData in the global variable $~' do
+  # end
+
+  def label_value(label, value)
+    label = label.ljust(30)
+    value = value.nil? ? 'nil' : value
+    puts "#{label}: #{value}"
+  end
+
+  usecase 'Character classes',
+    usage_description: 'With a "character class", also called "character set", you can tell the regex engine to match only one out of several characters' do
+
+      # context '=~' do
+        ruby 'match index ```=~```',
+          summary: 'The operator ```=~``` returns the index of the first match (```nil``` if no match)' do
+
+          source = 'abcdefghijklmnopqrstuvwxyz'
+
+          label_value('source =~ /[aeiou]/', source =~ /[aeiou]/)
+          label_value('source =~ /[crazy]/', source =~ /[crazy]/)
+          label_value('source =~ /[12345]/', source =~ /[12345]/)
+        end
+
+        ruby '' do
+
+          # source =~ /[aeiou]/           : 0
+          # source =~ /[crazy]/           : 0
+          # source =~ /[12345]/           : nil
+        end
+      # end
+
+    ruby 'global variable ```$~``` for MatchData',
+          summary: 'The global variable ```$~``` stores the matched data result from the last ```=~``` call' do
 
       source = 'abcdefghijklmnopqrstuvwxyz'
 
       puts source =~ /[aeiou]/
-
-      # 0
-
       puts $~
-
-      # a
+      puts source =~ /[12345]/
+      puts $~
+      puts source =~ /[d]/
+      puts $~
     end
 
-    # ruby 'match() for MatchData' do
-    #   source = 'abcdefghijklmnopqrstuvwxyz'
+    ruby '' do
+      # 0
+      # a
+      # 3
+      # d
+    end
 
-    #   puts source.match(/[aeiou]/)
-      
-    #   # a
+    ruby 'match() for MatchData' do
+      source = 'abcdefghijklmnopqrstuvwxyz'
 
-    #   puts source.match(/[12345]/)
-      
-    #   # nil
-    # end
+      puts source.match(/[aeiou]/)
+      puts source.match(/[12345]/)
+      puts source.match(/[d]/)
+    end
+
+    ruby '' do
+      # a
+      # nil
+    end
 
     # ruby 'match? for True/False',
     #       summary: "Regexp#match? executes a regexp match without creating a back reference object and changing $~ to reduce object allocation.\n\nRegexp#match? is listed as a performance enhancement in the release notes for 2.4.0" do
