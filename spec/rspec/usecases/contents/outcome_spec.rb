@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Rspec::Usecases::ContentOutcome, :usecases do
+RSpec.describe Rspec::Usecases::Contents::Outcome, :usecases do
   before(:context, :usecases) do
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
@@ -17,7 +17,7 @@ RSpec.describe Rspec::Usecases::ContentOutcome, :usecases do
     context 'nil description' do
       subject { usecase_outcome }
       it {
-        is_expected.to be_a(Rspec::Usecases::ContentOutcome)
+        is_expected.to be_a(Rspec::Usecases::Contents::Outcome)
           .and have_attributes(note: '',
                                title: '',
                                type: 'outcome',

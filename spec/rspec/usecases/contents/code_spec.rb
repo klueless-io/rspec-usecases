@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Rspec::Usecases::ContentCode, :usecases do
+RSpec.describe Rspec::Usecases::Contents::Code, :usecases do
   before(:context, :usecases) do
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
