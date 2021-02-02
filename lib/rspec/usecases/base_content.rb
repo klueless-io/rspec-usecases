@@ -145,16 +145,6 @@ module Rspec
           # ]
         }
       end
-
-      def debug(format: :detail)
-        puts "title                         : #{title}"
-        return unless format == :detail
-
-        puts "type                          : #{type}"
-        puts "metadata                      : #{metadata}"
-        puts "source                        : #{source}"
-        puts "is_hr                         : #{is_hr}"
-      end
     end
   end
 end
