@@ -12,7 +12,7 @@ RSpec.describe 'many usecases at levels 1,2 & 3 + some  of them are nested insid
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
 
-  subject { @documentor.document.usecases }
+  subject { @documentor.document.groups }
 
   let(:documentor) { Rspec::Usecases::Documentor.new(@example_group) }
 
@@ -25,7 +25,7 @@ RSpec.describe 'many usecases at levels 1,2 & 3 + some  of them are nested insid
   end
 
   context 'level 2 children for #1' do
-    subject { @documentor.document.usecases[0].usecases }
+    subject { @documentor.document.groups[0].groups }
     it do
       is_expected.to include(have_attributes(title: 'valid level 2 usecase #1.1', ),
                              have_attributes(title: 'valid level 2 usecase #1.2'))
@@ -33,7 +33,7 @@ RSpec.describe 'many usecases at levels 1,2 & 3 + some  of them are nested insid
   end
 
   context 'level 2 children for #2' do
-    subject { @documentor.document.usecases[1].usecases }
+    subject { @documentor.document.groups[1].groups }
     it do
       is_expected.to include(have_attributes(title: 'valid level 2 usecase #2.1', ),
                              have_attributes(title: 'valid level 2 usecase #2.2'))
@@ -41,13 +41,13 @@ RSpec.describe 'many usecases at levels 1,2 & 3 + some  of them are nested insid
   end
 
   context 'level 2 children for #3' do
-    subject { @documentor.document.usecases[2].usecases }
+    subject { @documentor.document.groups[2].groups }
     it do
       is_expected.to include(have_attributes(title: 'valid level 2 usecase #3.1'))
     end
 
     context 'level 3 children for #3.1' do
-      subject { @documentor.document.usecases[2].usecases[0].usecases }
+      subject { @documentor.document.groups[2].groups[0].groups }
       it do
         is_expected.to include(have_attributes(title: 'valid level 3 usecase #3.1.1'),
                                have_attributes(title: 'valid level 3 usecase #3.1.2'),
@@ -57,12 +57,12 @@ RSpec.describe 'many usecases at levels 1,2 & 3 + some  of them are nested insid
   end
 
     # context 'level 2' do
-    #   subject { @documentor.document.usecases }
+    #   subject { @documentor.document.groups }
     #   it do
-    #     @documentor.document.usecases[0].usecases.map(&:title)
-    #     @documentor.document.usecases[1].usecases.map(&:title)
-    #     @documentor.document.usecases[2].usecases.map(&:title)
-    #     @documentor.document.usecases[2].usecases[0].usecases.map(&:title)
+    #     @documentor.document.groups[0].groups.map(&:title)
+    #     @documentor.document.groups[1].groups.map(&:title)
+    #     @documentor.document.groups[2].groups.map(&:title)
+    #     @documentor.document.groups[2].groups[0].groups.map(&:title)
     #     is_expected.to include(have_attributes(title: 'valid level 1 usecase #1'),
     #                            have_attributes(title: 'valid level 1 usecase #2'),
     #                            have_attributes(title: 'valid level 1 usecase #3'))

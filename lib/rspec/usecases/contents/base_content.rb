@@ -46,7 +46,6 @@ module Rspec
 
         def self.get_instance(example)
           type = example.metadata[:content_type].to_s
-          # metadata = example.metadata
 
           begin
             klass = Module.const_get("Rspec::Usecases::Contents::#{type.capitalize}")

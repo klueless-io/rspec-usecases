@@ -50,7 +50,7 @@ As a Developer, I can extract code and other content from unit test, so that I c
 
 ### Tasks - completed
 
-Move content.\* namespace called contents
+Move content.\* into a namespace called contents
 
 - Content items take on the same role as Rspec::Example
 

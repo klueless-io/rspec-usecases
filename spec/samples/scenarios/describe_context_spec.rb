@@ -7,8 +7,8 @@ RSpec.describe 'one context and one describe block', :usecases do
 
   subject { @documentor.document }
 
-  it 'has no configured usecases' do
-    is_expected.to have_attributes(usecases: [])
+  it 'has no configured groups' do
+    is_expected.to have_attributes(groups: [])
   end
 
   describe '#some_method' do

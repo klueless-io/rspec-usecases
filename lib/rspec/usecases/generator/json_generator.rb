@@ -28,7 +28,7 @@ module Rspec
               title: document.title,
               description: document.description
             },
-            usecases: document.usecases.map(&:to_h)
+            usecases: document.groups.map(&:to_h)
           }
 
           @output = JSON.pretty_generate(@data)
