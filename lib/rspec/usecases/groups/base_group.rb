@@ -37,7 +37,7 @@ module Rspec
           build_attributes(example_group)
 
           # Loop through the it blocks
-          @contents = example_group.examples.map { |example| parse_content(example) }
+          @contents = example_group.examples.map { |example| parse_content(example) }.compact
         end
 
         def self.parse(key, example_group)

@@ -19,23 +19,23 @@ RSpec.describe Rspec::Usecases::Contents::Code, :usecases do
   context 'with code blocks' do
     context 'general purpose code' do
       subject { usecase_code }
-      it { is_expected.to have_attributes(source: "puts 'some code'", code_type: '') }
+      it { is_expected.to have_attributes(category: :code, source: "puts 'some code'", type: :unknown) }
     end
     context 'ruby code' do
       subject { usecase_ruby }
-      it { is_expected.to have_attributes(source: "puts 'some ruby'", code_type: 'ruby') }
+      it { is_expected.to have_attributes(category: :code, source: "puts 'some ruby'", type: :ruby) }
     end
     context 'css' do
       subject { usecase_css }
-      it { is_expected.to have_attributes(source: "puts 'some css'", code_type: 'css') }
+      it { is_expected.to have_attributes(category: :code, source: "puts 'some css'", type: :css) }
     end
     context 'js code' do
       subject { usecase_js }
-      it { is_expected.to have_attributes(source: "puts 'some js'", code_type: 'javascript') }
+      it { is_expected.to have_attributes(category: :code, source: "puts 'some js'", type: :javascript) }
     end
     context 'javascript code' do
       subject { usecase_javascript }
-      it { is_expected.to have_attributes(source: "puts 'some javascript'", code_type: 'javascript') }
+      it { is_expected.to have_attributes(category: :code, source: "puts 'some javascript'", type: :javascript) }
     end
   end
 

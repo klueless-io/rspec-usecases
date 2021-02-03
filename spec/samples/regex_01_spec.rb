@@ -2,32 +2,32 @@
 
 RSpec.describe Regexp, 
                :usecases,
-               document_title: 'Ruby RegExp by example',
+               document_title: 'How to use Ruby RegExp by example',
                document_description: 'Working through various regular expression scenarios using Ruby syntax',
-               markdown: { write: false, open: false, file: 'docs/regexp-01.md', pretty: true } do
+               markdown: { write: true, open: true, file: 'docs/regexp-01.md', pretty: true } do
 
   # usecase '',
   #         title: 'Alternation (OR)',
   #         summary: '' do
 
   #   ruby '',
-  #        summary: '' do
+  #         summary: '' do
 
   #     source = ''
 
   #     puts source =~ /[aeiou]/
   #   end
-  # content '=~', :hr, summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
-  #   # 0
-  #   # true
-  #   #
-  #   # true
-  # end
-  # content '=~', summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
-  #   # 0
-  #   # true
-  #   #
-  #   # true
+  #   content '=~', :hr, summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
+  #     # 0
+  #     # true
+  #     #
+  #     # true
+  #   end
+  # # content '=~', summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
+  # #   # 0
+  # #   # true
+  # #   #
+  # #   # true
   # end
 
 
@@ -39,71 +39,74 @@ RSpec.describe Regexp,
     puts "#{label}: #{value}"
   end
 
-  usecase 'Character classes',
-    usage_description: 'With a "character class", also called "character set", you can tell the regex engine to match only one out of several characters' do
+  # usecase 'Character classes',
+  #   usage_description: 'With a "character class", also called "character set", you can tell the regex engine to match only one out of several characters' do
 
-      # context '=~' do
-        ruby 'match index ```=~```',
-          summary: 'The operator ```=~``` returns the index of the first match (```nil``` if no match)' do
+  #     # context '=~' do
+  #       ruby 'match index ```=~```',
+  #         summary: 'The operator ```=~``` returns the index of the first match (```nil``` if no match)' do
 
-          source = 'abcdefghijklmnopqrstuvwxyz'
+  #         source = 'abcdefghijklmnopqrstuvwxyz'
 
-          label_value('source =~ /[aeiou]/', source =~ /[aeiou]/)
-          label_value('source =~ /[crazy]/', source =~ /[crazy]/)
-          label_value('source =~ /[12345]/', source =~ /[12345]/)
-        end
+  #         label_value('source =~ /[aeiou]/', source =~ /[aeiou]/)
+  #         label_value('source =~ /[crazy]/', source =~ /[crazy]/)
+  #         label_value('source =~ /[12345]/', source =~ /[12345]/)
+  #       end
 
-        ruby '' do
+  #       ruby '' do
+  #         # source =~ /[aeiou]/           : 0
+  #         # source =~ /[crazy]/           : 0
+  #         # source =~ /[12345]/           : nil
+  #       end
 
-          # source =~ /[aeiou]/           : 0
-          # source =~ /[crazy]/           : 0
-          # source =~ /[12345]/           : nil
-        end
-      # end
+  #       ruby 'print hello world' do
+  #         puts 'hello world'
+  #       end
+  #     # end
 
-    ruby 'global variable ```$~``` for MatchData',
-          summary: 'The global variable ```$~``` stores the matched data result from the last ```=~``` call' do
+  #   ruby 'global variable ```$~``` for MatchData',
+  #         summary: 'The global variable ```$~``` stores the matched data result from the last ```=~``` call' do
 
-      source = 'abcdefghijklmnopqrstuvwxyz'
+  #     source = 'abcdefghijklmnopqrstuvwxyz'
 
-      puts source =~ /[aeiou]/
-      puts $~
-      puts source =~ /[12345]/
-      puts $~
-      puts source =~ /[d]/
-      puts $~
-    end
+  #     puts source =~ /[aeiou]/
+  #     puts $~
+  #     puts source =~ /[12345]/
+  #     puts $~
+  #     puts source =~ /[d]/
+  #     puts $~
+  #   end
 
-    ruby '' do
-      # 0
-      # a
-      # 3
-      # d
-    end
+  #   ruby '' do
+  #     # 0
+  #     # a
+  #     # 3
+  #     # d
+  #   end
 
-    ruby 'match() for MatchData' do
-      source = 'abcdefghijklmnopqrstuvwxyz'
+  #   ruby 'match() for MatchData' do
+  #     source = 'abcdefghijklmnopqrstuvwxyz'
 
-      puts source.match(/[aeiou]/)
-      puts source.match(/[12345]/)
-      puts source.match(/[d]/)
-    end
+  #     puts source.match(/[aeiou]/)
+  #     puts source.match(/[12345]/)
+  #     puts source.match(/[d]/)
+  #   end
 
-    ruby '' do
-      # a
-      # nil
-    end
+  #   ruby '' do
+  #     # a
+  #     # nil
+  #   end
 
-    # ruby 'match? for True/False',
-    #       summary: "Regexp#match? executes a regexp match without creating a back reference object and changing $~ to reduce object allocation.\n\nRegexp#match? is listed as a performance enhancement in the release notes for 2.4.0" do
+  #   # ruby 'match? for True/False',
+  #   #       summary: "Regexp#match? executes a regexp match without creating a back reference object and changing $~ to reduce object allocation.\n\nRegexp#match? is listed as a performance enhancement in the release notes for 2.4.0" do
 
-    #   source = 'abcdefghijklmnopqrstuvwxyz'
+  #   #   source = 'abcdefghijklmnopqrstuvwxyz'
 
-    #   puts source.match?(/[aeiou]/)
+  #   #   puts source.match?(/[aeiou]/)
 
-    #   # true
-    # end
-  end
+  #   #   # true
+  #   # end
+  # end
 
   # usecase 'Character ranges',
   #   title: 'Character ranges',
