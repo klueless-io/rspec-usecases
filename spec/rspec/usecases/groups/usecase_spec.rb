@@ -10,12 +10,11 @@ RSpec.describe 'UsecaseAttributes', :usecases do
   include_context 'simple usecases'
 
   describe '.attribute.* readers' do
-    subject { @documentor.document.groups }
+    subject { @documentor.document.groups.first.groups }
 
     it {
-      is_expected.to include(an_object_having_attributes(key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::SimpleUsecaseBlock',
-                                                         title: 'Simple usecase block',
-                                                         deep_title: 'UsecaseAttributes B C Simple usecase block',
+      is_expected.to include(an_object_having_attributes(title: 'Simple usecase block',
+                                                         deep_title: 'UsecaseAttributes B C I am a group Simple usecase block',
                                                          usage: '',
                                                          usage_description: '',
                                                          summary: '',
@@ -23,9 +22,8 @@ RSpec.describe 'UsecaseAttributes', :usecases do
                                                          groups: []))
     }
     it {
-      is_expected.to include(an_object_having_attributes(key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::FullyConfiguredUsecaseBlock',
-                                                         title: 'Override Title',
-                                                         deep_title: 'UsecaseAttributes B C Override Title',
+      is_expected.to include(an_object_having_attributes(title: 'Override Title',
+                                                         deep_title: 'UsecaseAttributes B C I am a group Override Title',
                                                          usage: 'Array.new',
                                                          usage_description: 'Create a new array',
                                                          summary: 'Will all usecase attributes',
@@ -37,11 +35,11 @@ RSpec.describe 'UsecaseAttributes', :usecases do
 
   describe '#to_h' do
     context 'simple usecase' do
-      subject { @documentor.document.groups[0].to_h }
+      subject { @documentor.document.groups.first.groups[0].to_h }
       it do
-        is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::SimpleUsecaseBlock',
+        is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::IAmAGroup::SimpleUsecaseBlock',
                             title: 'Simple usecase block',
-                            deep_title: 'UsecaseAttributes B C Simple usecase block',
+                            deep_title: 'UsecaseAttributes B C I am a group Simple usecase block',
                             usage: '',
                             usage_description: '',
                             summary: '',
@@ -50,11 +48,11 @@ RSpec.describe 'UsecaseAttributes', :usecases do
       end
     end
     context 'simple usecase' do
-      subject { @documentor.document.groups[1].to_h }
+      subject { @documentor.document.groups.first.groups[1].to_h }
       it do
-        is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::FullyConfiguredUsecaseBlock',
+        is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::IAmAGroup::FullyConfiguredUsecaseBlock',
                             title: 'Override Title',
-                            deep_title: 'UsecaseAttributes B C Override Title',
+                            deep_title: 'UsecaseAttributes B C I am a group Override Title',
                             summary: 'Will all usecase attributes',
                             usage: 'Array.new',
                             usage_description: 'Create a new array',
