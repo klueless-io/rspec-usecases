@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'UsecaseAttributes', :usecases do
+RSpec.describe Rspec::Usecases::Groups::BaseGroup, :usecases do
   before(:context, :usecases) do
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
@@ -13,9 +13,9 @@ RSpec.describe 'UsecaseAttributes', :usecases do
     subject { @documentor.document.groups }
 
     it {
-      is_expected.to include(an_object_having_attributes(key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::SimpleUsecaseBlock',
+      is_expected.to include(an_object_having_attributes(key: 'RSpec::ExampleGroups::RspecUsecasesGroupsBaseGroup::B::C::SimpleUsecaseBlock',
                                                          title: 'Simple usecase block',
-                                                         deep_title: 'UsecaseAttributes B C Simple usecase block',
+                                                         deep_title: 'Rspec::Usecases::Groups::BaseGroup B C Simple usecase block',
                                                          usage: '',
                                                          usage_description: '',
                                                          summary: '',
@@ -23,9 +23,9 @@ RSpec.describe 'UsecaseAttributes', :usecases do
                                                          groups: []))
     }
     it {
-      is_expected.to include(an_object_having_attributes(key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::FullyConfiguredUsecaseBlock',
+      is_expected.to include(an_object_having_attributes(key: 'RSpec::ExampleGroups::RspecUsecasesGroupsBaseGroup::B::C::FullyConfiguredUsecaseBlock',
                                                          title: 'Override Title',
-                                                         deep_title: 'UsecaseAttributes B C Override Title',
+                                                         deep_title: 'Rspec::Usecases::Groups::BaseGroup B C Override Title',
                                                          usage: 'Array.new',
                                                          usage_description: 'Create a new array',
                                                          summary: 'Will all usecase attributes',
@@ -38,23 +38,23 @@ RSpec.describe 'UsecaseAttributes', :usecases do
   describe '#to_h' do
     context 'simple usecase' do
       subject { @documentor.document.groups[0].to_h }
-      it do
-        is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::SimpleUsecaseBlock',
+      it {
+        is_expected.to eq({ key: 'RSpec::ExampleGroups::RspecUsecasesGroupsBaseGroup::B::C::SimpleUsecaseBlock',
                             title: 'Simple usecase block',
-                            deep_title: 'UsecaseAttributes B C Simple usecase block',
+                            deep_title: 'Rspec::Usecases::Groups::BaseGroup B C Simple usecase block',
                             usage: '',
                             usage_description: '',
                             summary: '',
                             contents: [],
                             groups: [] })
-      end
+      }
     end
     context 'simple usecase' do
       subject { @documentor.document.groups[1].to_h }
       it do
-        is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::FullyConfiguredUsecaseBlock',
+        is_expected.to eq({ key: 'RSpec::ExampleGroups::RspecUsecasesGroupsBaseGroup::B::C::FullyConfiguredUsecaseBlock',
                             title: 'Override Title',
-                            deep_title: 'UsecaseAttributes B C Override Title',
+                            deep_title: 'Rspec::Usecases::Groups::BaseGroup B C Override Title',
                             summary: 'Will all usecase attributes',
                             usage: 'Array.new',
                             usage_description: 'Create a new array',

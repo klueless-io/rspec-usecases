@@ -9,7 +9,7 @@ RSpec.describe Rspec::Usecases::Contents::Code, :usecases do
 
   let(:document) { @documentor.document }
 
-  let(:usecase) { document.usecases[0] }
+  let(:usecase) { document.groups[0] }
   let(:usecase_code) { usecase.contents[0] }
   let(:usecase_ruby) { usecase.contents[1] }
   let(:usecase_css) { usecase.contents[2] }

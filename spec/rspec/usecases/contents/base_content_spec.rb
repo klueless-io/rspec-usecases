@@ -9,11 +9,11 @@ RSpec.describe Rspec::Usecases::Contents::BaseContent, :usecases do
 
   let(:document) { @documentor.document }
 
-  let(:usecase1) { document.usecases[0] }
+  let(:usecase1) { document.groups[0] }
   let(:usecase1_content1) { usecase1.contents[0] }
   let(:usecase1_content2) { usecase1.contents[1] }
 
-  let(:usecase2) { document.usecases[1] }
+  let(:usecase2) { document.groups[1] }
   let(:usecase2_content) { usecase2.contents[0] }
 
   context 'when missing description' do

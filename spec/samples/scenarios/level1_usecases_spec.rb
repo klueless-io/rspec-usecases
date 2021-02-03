@@ -6,7 +6,7 @@ RSpec.describe 'two usecases at level 1 + describe and context block', :usecases
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
 
-  subject { @documentor.document.usecases }
+  subject { @documentor.document.groups }
 
   let(:documentor) { Rspec::Usecases::Documentor.new(@example_group) }
 

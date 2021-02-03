@@ -2,36 +2,30 @@
 
 module Rspec
   module Usecases
-    # A document represents a list of usecases
+    # A document represents a list of groups, the main group type being usecases
     #
-    # A document can have a title, description and a list of usecases
-    # A usecase is just an Rspec context or describe block with the
+    # A document can have a title, description and a list of groups
+    # A group is just an Rspec context or describe block with the
     # attribute usecase set to true - usecase: true
     #
-    # The list of usecases can have their own child list of
-    # usecases that can go down to any practical depth.
+    # The list of groups can have their own child list of
+    # groups that can go down to any practical depth.
     class Document
       attr_reader :title
       attr_reader :description
-      attr_reader :usecases
+      attr_reader :groups
       attr_reader :options
-
-      # attr_reader :json
-      # attr_reader :debug
-      # attr_reader :markdown
-      # attr_reader :markdown_file
 
       def initialize(root_example_group, **options)
         @root = root_example_group
         @options = if options.nil? || options.empty?
                      Rspec::Usecases::Options::DocumentOptions.new(@root.metadata)
-                   #  extract_meta_options
                    else
                      Rspec::Usecases::Options::DocumentOptions.new(options)
                    end
 
         parse_title_description
-        build_usecases
+        build_groups
       end
 
       def json?
@@ -63,7 +57,7 @@ module Rspec
           },
           title: title,
           description: description,
-          usecases: usecases.map(&:to_h)
+          groups: groups.map(&:to_h)
         }
       end
 
@@ -71,9 +65,6 @@ module Rspec
 
       # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize
       def value_to_type(value, default_value: :detail, fail_value: :skip)
-        # puts value
-        # puts default_value
-        # puts fail_value
         if value.nil?
           [fail_value]
         elsif !!value == value
@@ -120,61 +111,63 @@ module Rspec
         @description = @root.metadata[:document_description] || ''
       end
 
-      def build_usecases
-        @usecases = []
+      def build_groups
+        @groups = []
 
         # This is a documentor setting
         return unless @root.metadata[:usecases]
 
         # Get a list of describe or context blocks with the :usecase
         # metadata flag, or use `usecase 'xyz' do end` in your code.
-        @usecases = flatten_usecase_hierarchy(@root, 1)
+        @groups = flatten_group_hierarchy(@root, 1)
 
         # debug
       end
 
-      def flatten_usecase_hierarchy(example_group, level)
+      # rubocop:disable Metrics/AbcSize
+      def flatten_group_hierarchy(example_group, level)
         # puts "name            : #{example_group.name}"
         # puts "entering level  : #{level}"
         # if example_group.metadata[:usecase] == true
-        #   usecase = Rspec::Usecases::Groups::Usecase.parse(example_group.name, example_group)
-        #   return [usecase]
+        #   group = Rspec::Usecases::Groups::Usecase.parse(example_group.name, example_group)
+        #   return [group]
         # end
 
-        # { name: example_group.name, is_usecase: example_group.metadata[:usecase], child_count: example_group.children.length }
-        # { name: child_example_group.name, is_usecase: child_example_group.metadata[:usecase], child_count: child_example_group.children.length }
-        level_usecases = []
+        # { name: example_group.name, is_group: example_group.metadata[:group], child_count: example_group.children.length }
+        # { name: child_example_group.name, is_group: child_example_group.metadata[:group], child_count: child_example_group.children.length }
+        level_groups = []
 
         example_group.children.each do |child_example_group|
           if child_example_group.metadata[:usecase] == true
-            # puts 'use case found'
-            usecase = Rspec::Usecases::Groups::Usecase.parse(child_example_group.name, child_example_group)
+            raise(Rspec::Usecases::Error, 'Group required') if child_example_group.metadata[:group_type].nil?
 
-            child_usecases = flatten_usecase_hierarchy(child_example_group, level + 1)
-            # puts "child_usecases  : #{child_usecases.length}"
+            group = Rspec::Usecases::Groups::BaseGroup.parse(child_example_group.name, child_example_group)
 
-            usecase.usecases = child_usecases
+            child_groups = flatten_group_hierarchy(child_example_group, level + 1)
 
-            usecases.push usecase
+            group.groups = child_groups
 
-            level_usecases.push usecase
+            groups.push group
+
+            level_groups.push group
           else
             # puts 'keep looking'
-            sibling_usecases = flatten_usecase_hierarchy(child_example_group, level)
+            sibling_groups = flatten_group_hierarchy(child_example_group, level)
 
             # puts "level            : #{level}"
-            # puts "level_usecases   : #{level_usecases.length}"
-            # puts "sibling_usecases : #{sibling_usecases.length}"
+            # puts "level_groups   : #{level_groups.length}"
+            # puts "sibling_groups : #{sibling_groups.length}"
 
-            level_usecases += sibling_usecases
+            level_groups += sibling_groups
           end
         end
 
         # puts "leaving level   : #{level}"
-        # puts "count for level : #{level_usecases.length}"
+        # puts "count for level : #{level_groups.length}"
 
-        level_usecases
+        level_groups
       end
+      # rubocop:enable Metrics/AbcSize
     end
   end
 end

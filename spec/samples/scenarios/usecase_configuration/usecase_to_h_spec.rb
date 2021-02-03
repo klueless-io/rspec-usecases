@@ -6,7 +6,7 @@ RSpec.describe 'UsecaseAttributes', :usecases do
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
 
-  subject { @documentor.document.usecases }
+  subject { @documentor.document.groups }
 
   context 'check deep hash' do
     subject { instance.to_h }
@@ -23,7 +23,7 @@ RSpec.describe 'UsecaseAttributes', :usecases do
     #       markdown_prettier: false,
     #       markdown_open: false
     #     },
-    #     usecases: [{
+    #     groups: [{
     #       key: 'usecase1',
     #       title: 'Simple usecase block',
     #       deep_title: 'A B C Simple usecase block',
