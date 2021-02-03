@@ -3,7 +3,6 @@
 require 'pry'
 require 'bundler/setup'
 require 'rspec/usecases'
-require 'support/usecase_examples'
 require 'support/shared_comprehensive_usecases'
 require 'support/shared_simple_usecases'
 
@@ -18,9 +17,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
-
-  # Add rspec support helpers
-  config.include UsecaseExamples
 
   # ----------------------------------------------------------------------
   # Usecase Documentor
