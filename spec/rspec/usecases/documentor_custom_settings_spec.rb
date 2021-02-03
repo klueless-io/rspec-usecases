@@ -30,7 +30,7 @@ RSpec.describe 'Documentor - Custom Settings',
         skip_render?: true,
         title: 'Document title for custom settings',
         description: 'Document description for custom settings',
-        usecases: []
+        groups: []
       )
     end
 

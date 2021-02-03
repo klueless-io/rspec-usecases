@@ -27,7 +27,7 @@ module Rspec
 
         def generate
           print_document_header
-          print_usecases(document.usecases)
+          print_groups(document.groups)
         end
 
         private
@@ -38,8 +38,8 @@ module Rspec
           write_lf
         end
 
-        def print_usecases(usecases)
-          usecases.each { |usecase| print_usecase(usecase) }
+        def print_groups(groups)
+          groups.each { |usecase| print_usecase(usecase) }
         end
 
         def print_usecase(usecase)
@@ -79,7 +79,7 @@ module Rspec
             render_code(content) if content.type == 'code'
           end
 
-          print_usecases(usecase.usecases)
+          print_groups(usecase.groups)
         end
 
         def render_outcome(content)

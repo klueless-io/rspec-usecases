@@ -24,7 +24,7 @@ module Rspec
 
         def generate
           print_document_header
-          print_usecases(document.usecases)
+          print_groups(document.groups)
         end
 
         private
@@ -35,8 +35,8 @@ module Rspec
           kv 'Description', document.description if document.description
         end
 
-        def print_usecases(usecases)
-          usecases.each { |usecase| print_usecase(usecase) }
+        def print_groups(groups)
+          groups.each { |usecase| print_usecase(usecase) }
         end
 
         def print_usecase(usecase)
@@ -44,7 +44,7 @@ module Rspec
 
           indent
           usecase.contents.each { |content| print_usecase_content(content) }
-          print_usecases(usecase.usecases)
+          print_groups(usecase.groups)
           outdent
         end
 

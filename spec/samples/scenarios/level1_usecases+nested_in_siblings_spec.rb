@@ -12,7 +12,7 @@ RSpec.describe 'three usecases at level 1 + some of them are nested inside descr
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
 
-  subject { @documentor.document.usecases }
+  subject { @documentor.document.groups }
 
   let(:documentor) { Rspec::Usecases::Documentor.new(@example_group) }
 

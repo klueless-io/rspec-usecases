@@ -20,7 +20,7 @@ RSpec.describe 'Documentor - Default Settings', :usecases do
         skip_render?: false,
         title: '',
         description: '',
-        usecases: []
+        groups: []
       )
     end
   end

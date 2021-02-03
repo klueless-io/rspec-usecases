@@ -5,6 +5,7 @@ require 'bundler/setup'
 require 'rspec/usecases'
 require 'support/usecase_examples'
 require 'support/shared_comprehensive_usecases'
+require 'support/shared_simple_usecases'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

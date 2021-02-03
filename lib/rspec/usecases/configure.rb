@@ -16,8 +16,11 @@ module Rspec
       config.alias_example_group_to :context  , usecase: false
       config.alias_example_group_to :describe , usecase: false
 
-      config.alias_example_group_to :usecase  , usecase: true
-      config.alias_example_group_to :xusecase , usecase: false
+      config.alias_example_group_to :usecase  , usecase: true  , group_type: :usecase
+      config.alias_example_group_to :xusecase , usecase: false , group_type: :usecase
+
+      config.alias_example_group_to :group    , usecase: true  , group_type: :group
+      config.alias_example_group_to :xgroup   , usecase: false , group_type: :group
 
       config.alias_example_to :code       , content_type: :code
       config.alias_example_to :ruby       , content_type: :code, code_type: :ruby
