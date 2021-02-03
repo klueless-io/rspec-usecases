@@ -25,6 +25,10 @@ Gem::Specification.new do |spec|
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/klueless-io/rspec-usecases'
   spec.metadata['changelog_uri'] = 'https://github.com/klueless-io/rspec-usecases/commits/master'
+  # Go to: https://rubydoc.info/
+  # Click Add Project:
+  # git@github.com:klueless-io/rspec-usecases
+  spec.metadata['documentation_uri'] = 'https://rubydoc.info/github/klueless-io/rspec-usecases/master'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the RubyGem files that have been added into git.
@@ -37,6 +41,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
   # spec.extensions    = ['ext/rspec_usecases/extconf.rb']
+  spec.extra_rdoc_files = ['README.md', 'STORIES.md', 'USAGE.md']
+  spec.rdoc_options    += [
+    '--title', 'rspec-usecases by appydave.com',
+    '--main', 'README.md',
+    '--files STORIES.MD USAGE.MD'
+  ]
 
   # spec.add_dependency 'tty-box',         '~> 0.5.0'
 end
