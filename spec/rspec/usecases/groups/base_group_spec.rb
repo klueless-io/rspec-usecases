@@ -29,8 +29,8 @@ RSpec.describe Rspec::Usecases::Groups::BaseGroup, :usecases do
                                                          usage: 'Array.new',
                                                          usage_description: 'Create a new array',
                                                          summary: 'Will all usecase attributes',
-                                                         contents: include(an_object_having_attributes(type: 'outcome', title: 'this outcome has a note'),
-                                                                           an_object_having_attributes(type: 'code', code_type: 'ruby')),
+                                                         contents: include(an_object_having_attributes(category: :content, type: :outcome, title: 'this outcome has a note'),
+                                                                           an_object_having_attributes(category: :code, type: :ruby)),
                                                          groups: []))
     }
   end

@@ -10,40 +10,37 @@ RSpec.describe Rspec::Usecases::Contents::BaseContent, :usecases do
   let(:document) { @documentor.document }
 
   let(:usecase1) { document.groups[0] }
-  let(:usecase1_content1) { usecase1.contents[0] }
-  let(:usecase1_content2) { usecase1.contents[1] }
+  let(:usecase1_content) { usecase1.contents[0] }
+  let(:usecase1_code) { usecase1.contents[1] }
 
   let(:usecase2) { document.groups[1] }
-  let(:usecase2_content) { usecase2.contents[0] }
+  let(:usecase2_item) { usecase2.contents[0] }
+  let(:usecase2_code) { usecase2.contents[1] }
 
   context 'when missing description' do
     context 'nil description' do
-      subject { usecase1_content1 }
-      it {
-        is_expected.to be_a(Rspec::Usecases::Contents::BaseContent)
-          .and have_attributes(title: '',
-                               note: '',
-                               type: 'outcome',
-                               source: '# some text',
-                               is_hr: false)
-      }
+      subject { usecase1_content }
+      it { is_expected.to have_attributes(title: '') }
     end
     context 'blank description' do
-      subject { usecase1_content2 }
-      it {
-        is_expected.to have_attributes(title: '',
-                                       note: '',
-                                       type: 'outcome',
-                                       source: '# some text',
-                                       is_hr: false)
-      }
+      subject { usecase1_code }
+      it { is_expected.to have_attributes(title: '') }
     end
   end
 
   context 'with description provided' do
-    context 'via main paramater' do
-      subject { usecase2_content }
-      it { is_expected.to have_attributes(title: 'some title') }
+    subject { usecase2_item }
+    it { is_expected.to have_attributes(title: 'some title') }
+  end
+
+  context 'when category is code' do
+    context 'unknown code type' do
+      subject { usecase1_code }
+      it { is_expected.to have_attributes(category: :code, type: :unknown, source: '# some text') }
+    end
+    context 'ruby code type' do
+      subject { usecase2_code }
+      it { is_expected.to have_attributes(category: :code, type: :ruby, source: '# some ruby') }
     end
   end
 
@@ -57,8 +54,8 @@ RSpec.describe Rspec::Usecases::Contents::BaseContent, :usecases do
     outcome do
       # some text
     end
-    # aka :usecase1_outcome2
-    outcome '    ' do
+    # aka :usecase1_code
+    code '    ' do
       # some text
     end
   end
@@ -66,8 +63,12 @@ RSpec.describe Rspec::Usecases::Contents::BaseContent, :usecases do
   # NOTE: What Rspec calls a description, I call a title
   usecase 'usecase: when outcome has description' do
     # aka :usecase2_outcome
-    outcome 'some title' do
+    item 'some title' do
       # some text
+    end
+
+    ruby 'some ruby' do
+      # some ruby
     end
   end
 end

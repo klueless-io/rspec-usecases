@@ -27,8 +27,8 @@ RSpec.describe 'UsecaseAttributes', :usecases do
                                                          usage: 'Array.new',
                                                          usage_description: 'Create a new array',
                                                          summary: 'Will all usecase attributes',
-                                                         contents: include(an_object_having_attributes(type: 'outcome', title: 'this outcome has a note'),
-                                                                           an_object_having_attributes(type: 'code', code_type: 'ruby')),
+                                                         contents: include(an_object_having_attributes(category: :content, type: :outcome, title: 'this outcome has a note'),
+                                                                           an_object_having_attributes(category: :code, type: :ruby)),
                                                          groups: []))
     }
   end
@@ -57,8 +57,8 @@ RSpec.describe 'UsecaseAttributes', :usecases do
                             usage: 'Array.new',
                             usage_description: 'Create a new array',
                             contents: [
-                              { note: 'outcome note', title: 'this outcome has a note', type: 'outcome', source: '# Source code goes here', is_hr: true },
-                              { code_type: 'ruby', note: '', title: 'this is some ruby code', type: 'code', source: '# Source code goes here', is_hr: false }
+                              { category: :content, type: :outcome, note: 'outcome note', title: 'this outcome has a note', source: '# Source code goes here', is_hr: true },
+                              { category: :code, type: :ruby, note: '', title: 'this is some ruby code', source: '# Source code goes here', is_hr: false }
                             ],
                             groups: [] })
       end
