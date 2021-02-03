@@ -32,7 +32,7 @@ group :development, :test do
   # gem 'rspec-mocks', path: '~/dev/gems_3rd/rspec-mocks'
   # gem 'rspec-support', path: '~/dev/gems_3rd/rspec-support'
 
-  gem 'rubocop'
+  gem 'rubocop', '~> 1.9'
   gem 'rubocop-rake', require: false
   gem 'rubocop-rspec', require: false
 end
