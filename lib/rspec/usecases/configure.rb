@@ -22,16 +22,17 @@ module Rspec
       config.alias_example_group_to :group    , usecase: true  , group_type: :group
       config.alias_example_group_to :xgroup   , usecase: false , group_type: :group
 
-      config.alias_example_to :code       , content_type: :code
-      config.alias_example_to :ruby       , content_type: :code, code_type: :ruby
-      config.alias_example_to :fruby      , content_type: :code, code_type: :ruby       , focus: true
-      config.alias_example_to :css        , content_type: :code, code_type: :css
-      config.alias_example_to :js         , content_type: :code, code_type: :javascript
-      config.alias_example_to :javascript , content_type: :code, code_type: :javascript
+      config.alias_example_to :code       , category: :code    , type: :unknown
+      config.alias_example_to :ruby       , category: :code    , type: :ruby
+      config.alias_example_to :fruby      , category: :code    , type: :ruby       , focus: true
+      config.alias_example_to :css        , category: :code    , type: :css
+      config.alias_example_to :js         , category: :code    , type: :javascript
+      config.alias_example_to :javascript , category: :code    , type: :javascript
 
-      # This may need to be it's own type
-      config.alias_example_to :content    , content_type: :content
-      config.alias_example_to :outcome    , content_type: :outcome
+      # This may need to be it's own typed
+      config.alias_example_to :content    , category: :content, type: :content
+      config.alias_example_to :outcome    , category: :content, type: :outcome
+      config.alias_example_to :item       , category: :content, type: :item
 
       config.extend Rspec::Usecases::Helpers
     end
