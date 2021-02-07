@@ -13,13 +13,13 @@ RSpec.shared_context 'simple usecases', shared_context: :metadata do
                 summary: 'Will all usecase attributes',
                 usage: 'Array.new',
                 usage_description: 'Create a new array' do
-          outcome 'this outcome has a note',
-                  :hr,
-                  note: 'outcome note' do
+          ruby 'this is some ruby code', id: 'xyz' do
             # Source code goes here
           end
 
-          ruby 'this is some ruby code' do
+          outcome 'this outcome has a note',
+                  :hr,
+                  note: 'outcome note' do
             # Source code goes here
           end
         end

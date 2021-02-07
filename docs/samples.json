@@ -1,0 +1,185 @@
+{
+  "document": {
+    "title": "Usage Samples",
+    "description": "Some examples of how to use Rspec::Usage"
+  },
+  "usecases": [
+    {
+      "usage": "Array.load",
+      "usage_description": "Array.load - description goes here",
+      "key": "RSpec::ExampleGroups::Array::Load::ArrayLoadBasics",
+      "hierarchy_level": 1,
+      "heading_level": 2,
+      "title": "Array load basics",
+      "deep_title": "Array load Array load basics",
+      "summary": "",
+      "contents": [
+
+      ],
+      "groups": [
+        {
+          "usage": "",
+          "usage_description": "",
+          "key": "RSpec::ExampleGroups::Array::Load::ArrayLoadBasics::InitializeAnArray",
+          "hierarchy_level": 2,
+          "heading_level": 3,
+          "title": "Initialize an array",
+          "deep_title": "Array load Array load basics Initialize an array",
+          "summary": "",
+          "contents": [
+            {
+              "id": "1:1:1:1:1",
+              "title": "",
+              "category": "code",
+              "type": "ruby",
+              "source": "ar = [1,2,3]",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "initArray1",
+              "title": "",
+              "category": "code",
+              "type": "ruby",
+              "source": "ar = [1,2,3]\n\nexpect(ar).to match_array([1, 2, 3])",
+              "expected_description": "is expected to contain exactly 1, 2, and 3",
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "1:1:1:1:3",
+              "title": "",
+              "category": "content",
+              "type": "outcome",
+              "source": "is expected to contain exactly 1, 2, and 3",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "1:1:1:1:4",
+              "title": "",
+              "category": "content",
+              "type": "hr",
+              "source": "",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "initArray2",
+              "title": "",
+              "category": "code",
+              "type": "ruby",
+              "source": "ar = [1,2,3]\n\nputs ar",
+              "expected_description": null,
+              "captured_output": "1\n2\n3\n",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "1:1:1:1:6",
+              "title": "",
+              "category": "content",
+              "type": "outcome",
+              "source": "1\n2\n3\n",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            }
+          ],
+          "groups": [
+
+          ]
+        },
+        {
+          "usage": "",
+          "usage_description": "",
+          "key": "RSpec::ExampleGroups::Array::Load::ArrayLoadBasics::PushToArray",
+          "hierarchy_level": 2,
+          "heading_level": 3,
+          "title": "Push to array",
+          "deep_title": "Array load Array load basics Push to array",
+          "summary": "",
+          "contents": [
+            {
+              "id": "1:1:1:2:1",
+              "title": "",
+              "category": "code",
+              "type": "ruby",
+              "source": "ar = [1,2,3]\n\nar << 4",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "pushArray1",
+              "title": "",
+              "category": "code",
+              "type": "ruby",
+              "source": "ar = [1,2,3]\n\nar << 4\n\nexpect(ar).to match_array([1, 2, 3, 4])",
+              "expected_description": "is expected to contain exactly 1, 2, 3, and 4",
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "1:1:1:2:3",
+              "title": "",
+              "category": "content",
+              "type": "outcome",
+              "source": "is expected to contain exactly 1, 2, 3, and 4",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "1:1:1:2:4",
+              "title": "",
+              "category": "content",
+              "type": "hr",
+              "source": "",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "pushArray2",
+              "title": "",
+              "category": "code",
+              "type": "ruby",
+              "source": "ar = [1,2,3]\n\nar << 4\n\nputs ar",
+              "expected_description": null,
+              "captured_output": "1\n2\n3\n4\n",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "1:1:1:2:6",
+              "title": "",
+              "category": "content",
+              "type": "outcome",
+              "source": "1\n2\n3\n4\n",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            }
+          ],
+          "groups": [
+
+          ]
+        }
+      ]
+    }
+  ]
+}
