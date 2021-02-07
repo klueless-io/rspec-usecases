@@ -26,7 +26,7 @@ group :development, :test do
   gem 'rake-compiler', require: false
   gem 'rspec', '~> 3.0'
 
-  # # gem 'rspec', path: '~/dev/gems_3rd/rspec'
+  # gem 'rspec', path: '~/dev/gems_3rd/rspec'
   # gem 'rspec-core', path: '~/dev/gems_3rd/rspec-core'
   # gem 'rspec-expectations', path: '~/dev/gems_3rd/rspec-expectations'
   # gem 'rspec-mocks', path: '~/dev/gems_3rd/rspec-mocks'

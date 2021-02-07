@@ -11,6 +11,15 @@ module Rspec
         # type of group
         attr_reader :type
 
+        # Hierarchy level of the group, top level groups are set to 1
+        attr_accessor :hierarchy_level
+
+        # Document level (aka Level) is the level from a document point of view
+        #
+        # It defaults to the hierarchy_level, but can be (TODO: overridden) so that
+        # you can have control over automatic H* tags
+        attr_accessor :heading_level
+
         # title
         attr_reader :title
 
@@ -48,7 +57,7 @@ module Rspec
         end
 
         def self.get_instance(key, example_group)
-          type = example_group.metadata[:group_type].to_s
+          type = example_group.metadata[:group_type]
 
           begin
             klass = Module.const_get("Rspec::Usecases::Groups::#{type.capitalize}")
@@ -67,6 +76,8 @@ module Rspec
         def to_h
           {
             key: key,
+            hierarchy_level: hierarchy_level,
+            heading_level: heading_level,
             title: title,
             deep_title: deep_title,
             summary: summary,
@@ -83,6 +94,10 @@ module Rspec
         private
 
         def parse_content(example)
+          # puts 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+          # puts example.metadata[:scoped_id]
+          # puts 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
           Rspec::Usecases::Contents::BaseContent.parse(example)
         end
 

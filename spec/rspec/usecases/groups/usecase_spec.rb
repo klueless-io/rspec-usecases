@@ -38,6 +38,8 @@ RSpec.describe 'UsecaseAttributes', :usecases do
       subject { @documentor.document.groups.first.groups[0].to_h }
       it do
         is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::IAmAGroup::SimpleUsecaseBlock',
+                            hierarchy_level: 2,
+                            heading_level: 3,
                             title: 'Simple usecase block',
                             deep_title: 'UsecaseAttributes B C I am a group Simple usecase block',
                             usage: '',
@@ -50,15 +52,18 @@ RSpec.describe 'UsecaseAttributes', :usecases do
     context 'simple usecase' do
       subject { @documentor.document.groups.first.groups[1].to_h }
       it do
+        puts subject
         is_expected.to eq({ key: 'RSpec::ExampleGroups::UsecaseAttributes::B::C::IAmAGroup::FullyConfiguredUsecaseBlock',
+                            hierarchy_level: 2,
+                            heading_level: 3,
                             title: 'Override Title',
                             deep_title: 'UsecaseAttributes B C I am a group Override Title',
                             summary: 'Will all usecase attributes',
                             usage: 'Array.new',
                             usage_description: 'Create a new array',
                             contents: [
-                              { category: :content, type: :outcome, note: 'outcome note', title: 'this outcome has a note', source: '# Source code goes here', is_hr: true },
-                              { category: :code, type: :ruby, note: '', title: 'this is some ruby code', source: '# Source code goes here', is_hr: false }
+                              { id: 'xyz', category: :code, type: :ruby, note: '', title: 'this is some ruby code', source: 'Source code goes here', is_hr: false },
+                              { id: '1:1:1:1:2:2', category: :content, type: :outcome, note: 'outcome note', title: 'this outcome has a note', source: 'Source code goes here', is_hr: true }
                             ],
                             groups: [] })
       end

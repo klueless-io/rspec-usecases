@@ -36,11 +36,11 @@ RSpec.describe Rspec::Usecases::Contents::BaseContent, :usecases do
   context 'when category is code' do
     context 'unknown code type' do
       subject { usecase1_code }
-      it { is_expected.to have_attributes(category: :code, type: :unknown, source: '# some text') }
+      it { is_expected.to have_attributes(category: :code, type: :unknown, source: 'some text') }
     end
     context 'ruby code type' do
       subject { usecase2_code }
-      it { is_expected.to have_attributes(category: :code, type: :ruby, source: '# some ruby') }
+      it { is_expected.to have_attributes(category: :code, type: :ruby, source: 'some ruby') }
     end
   end
 

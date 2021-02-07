@@ -3,3 +3,17 @@
 Working through various regular expression scenarios using Ruby syntax
 
 ## Alternation (OR)
+
+```ruby
+source = ''
+
+puts source =~ /[aeiou]/
+```
+
+---
+
+- =~
+
+```ruby
+
+```

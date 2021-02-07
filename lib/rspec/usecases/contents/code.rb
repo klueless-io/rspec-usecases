@@ -5,21 +5,18 @@ module Rspec
     module Contents
       # Code
       class Code < Rspec::Usecases::Contents::BaseContent
-        # # # Source code
-        # # attr_accessor :code
-
-        # # Type of code, ruby, javascript, css etc.
-        # attr_accessor :code_type
+        # Over ride the source code
+        attr_accessor :code
 
         # def initialize(type, example)
         #   super(type, example)
 
-        #   @code_type = example.metadata[:code_type].to_s
+        #   # @code = example.metadata[:code].to_s
         # end
 
         # def to_h
         #   {
-        #     code_type: code_type
+        #     # code: code
         #   }.merge(super.to_h)
         # end
       end

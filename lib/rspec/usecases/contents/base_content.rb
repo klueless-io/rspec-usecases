@@ -15,10 +15,13 @@ module Rspec
           (?<indent>\s*)                        # find the indent before the method
           (?<method_type>#{METHOD_NAMES})\s     # grab the method name from predefined list
           (?<method_signature>.*?)              # grab the method signature which is every thing up to the first do
-          (?<method_open>do)                    # code comes after the first do
+          (?<method_open>\bdo\b)                # code comes after the first do
           (?<content>.*)                        # content is what we want
           (?<method_closure>end)\z              # the end keyword at the end of string is where the content finishes
         /xm.freeze
+
+        # id is defaults to the scope_id or can be set manually
+        attr_accessor :id
 
         # title
         attr_accessor :title
@@ -29,11 +32,21 @@ module Rspec
         # :type
         attr_accessor :type
 
-        # metadata
-        attr_accessor :metadata
+        # :expected_description
+        #
+        # Based on the code found in example.rb at line: 540
+        # https://github.com/rspec/rspec-core/blob/ecb65d2d4ea7b381472e3084f45e2da94e00ce91/lib/rspec/core/example.rb#L540
+        # RSpec::Matchers.generated_description
+        attr_accessor :expected_description
+
+        # attach the RSpec example to the content
+        attr_accessor :example
 
         # source
         attr_accessor :source
+
+        # source_from (lambda that will go and build the source)
+        attr_accessor :source_from
 
         # Note, similar to summary on usecase, but due to metadata inheritance
         # I needed to use a different name
@@ -41,6 +54,9 @@ module Rspec
 
         # is_hr
         attr_accessor :is_hr
+
+        # Store the captured output of the test if the test writes to $stdout
+        attr_accessor :captured_output
 
         def self.parse(example)
           # return nil if example.description.nil?# || example.description.strip.length.zero?
@@ -72,12 +88,22 @@ module Rspec
 
         def initialize(category, example)
           @category = category
+          @example = example
+          @example.metadata[:usecase_content] = self
 
+          load_meta_attributes(example)
+          load_meta_attribute_options(example)
+        end
+
+        def load_meta_attributes(example)
+          @id = example.metadata[:id] || example.metadata[:scoped_id]
           title = example.description.strip
           @title = title.start_with?('example at .') ? '' : title
           @type = example.metadata[:type].to_sym
           @note = example.metadata[:note].to_s
+        end
 
+        def load_meta_attribute_options(example)
           # May want to delegate this to an OpenStruct called options
           @is_hr = !!example.metadata[:hr]
         end
@@ -87,10 +113,28 @@ module Rspec
         end
         alias i_am? am_i?
 
-        # TODO: Extract to it's own class
+        def after_context(document)
+          example.metadata[:after_context]&.call(document, self)
+        end
 
+        def after_hook
+          apply_expected_description(@example.description) unless @example.description.nil?
+        end
+
+        def apply_expected_description(description)
+          # Taken from: [Positive|Negative]ExpectationHandler.verb
+          verbs = [
+            'is expected to',
+            'is expected not to'
+          ]
+
+          @expected_description = description if description.start_with?(*verbs)
+        end
+
+        # TODO: Extract to it's own class
         # Source code for rspec is living on the metadata[:block].source location
         # Have not written a test for this yet
+        # rubocop:disable Metrics/AbcSize
         def parse_block_source(example)
           unless example.metadata[:source_override].nil?
             @source = example.metadata[:source_override]
@@ -108,13 +152,18 @@ module Rspec
             @source = ''
             return
           end
-          @source = remove_wasted_indentation(segments[:content])
-          @source
+
+          lines = grab_content_lines(segments[:content])
+          lines = remove_wasted_indentation(lines)
+          lines = remove_redundant_comments(lines)
+
+          @source = lines.join
         rescue StandardError => e
           puts 'Could not parse source'
           puts example.metadata
           puts e
         end
+        # rubocop:enable Metrics/AbcSize
 
         def get_source(example)
           if defined?(example.metadata) && defined?(example.metadata[:block]) && defined?(example.metadata[:block].source)
@@ -124,9 +173,22 @@ module Rspec
           end
         end
 
-        def remove_wasted_indentation(content)
-          lines = content.lines
+        def grab_content_lines(content)
+          sound_content_found = false
 
+          # trailing whitespace is useless
+          # proceeding whitespace is only useful on the first line found
+          lines = content.rstrip
+                         .lines
+                         .select! do |line|
+            sound_content_found = (sound_content_found || line != "\n")
+            sound_content_found
+          end
+
+          lines || []
+        end
+
+        def remove_wasted_indentation(lines)
           whitespace = /^\s*/
 
           # find the small whitespace sequence
@@ -142,17 +204,23 @@ module Rspec
           rex_indent = /^#{indent}/
 
           lines.each { |l| l.gsub!(rex_indent, '') }
+          lines
+        end
 
-          # convert back to a content string
-          lines.join.strip
+        def remove_redundant_comments(lines)
+          lines.map! { |line| line[1..-1].lstrip } if lines.all? { |line| line.start_with?('#') }
+          lines
         end
 
         def to_h
           {
+            id: id,
             title: title,
             category: category,
             type: type,
             source: source,
+            expected_description: expected_description,
+            captured_output: captured_output,
             note: note,
             is_hr: is_hr
             # options: [
