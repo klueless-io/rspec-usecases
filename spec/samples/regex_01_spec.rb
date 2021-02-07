@@ -6,29 +6,29 @@ RSpec.describe Regexp,
                document_description: 'Working through various regular expression scenarios using Ruby syntax',
                markdown: { write: true, open: true, file: 'docs/regexp-01.md', pretty: true } do
 
-  # usecase '',
-  #         title: 'Alternation (OR)',
-  #         summary: '' do
+  usecase '',
+          title: 'Alternation (OR)',
+          summary: '' do
 
-  #   ruby '',
-  #         summary: '' do
+    ruby '',
+          summary: '' do
 
-  #     source = ''
+      source = ''
 
-  #     puts source =~ /[aeiou]/
-  #   end
-  #   content '=~', :hr, summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
-  #     # 0
-  #     # true
-  #     #
-  #     # true
-  #   end
-  # # content '=~', summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
-  # #   # 0
-  # #   # true
-  # #   #
-  # #   # true
-  # end
+      puts source =~ /[aeiou]/
+    end
+    content '=~', :hr, summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
+      # 0
+      # true
+      #
+      # true
+    end
+  # content '=~', summary: "the quick\nbrown fox\njumped over the\nlazy dog" do
+  #   # 0
+  #   # true
+  #   #
+  #   # true
+  end
 
 
   # end

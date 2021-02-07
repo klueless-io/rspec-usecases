@@ -1,0 +1,301 @@
+<html>
+  <head>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <style>
+      /* Icons from iconfinder.com
+      http://www.iconfinder.com/search/?q=iconset%3Asiena
+      */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: #444;
+        background-color: #DDD;
+      }
+
+      ::selection {
+        background: transparent;
+      }
+      ::-moz-selection {
+        background: transparent;
+      }
+
+      #view {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 3;
+      }
+
+      .ent {
+        display: block;
+        float: left;
+        position: relative;
+        font-size: 12px;
+        margin: 20px;
+        padding: 5px 10px 5px 5px;
+        min-width: 100px;
+        background-color: #fff;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 1px 3px #666;
+        -moz-box-shadow: 0 1px 3px #666;
+        box-shadow: 0 1px 3px #666;
+        z-index: 2;
+        cursor: move;
+      }
+
+      .ent:before {
+        content: attr(id);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 5px 5px 5px 10px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #eee;
+        border-top: 1px solid #CCC;
+        background-color: #444;
+        background: -webkit-linear-gradient(#444, #333);
+        background: -moz-linear-gradient(#444, #333);
+        background: -o-linear-gradient(#444, #333);
+        background: -ms-linear-gradient(#444, #333);
+        background: linear-gradient(#444, #333);
+        -moz-border-radius-top: 3px 3px 0px 0px;
+        -webkit-border-radius: 3px 3px 0px 0px;
+        border-radius: 3px 3px 0px 0px;
+      }
+
+      .ent ul {
+        list-style: none;
+        margin: 5px 10px 5px 5px;
+      }
+
+      .ent ul li {
+        color: #666;
+        padding-top: 1px;
+        line-height: 16px;
+        background-image: url(https://dl.dropbox.com/s/qo412wmz99jjfjw/siena.png?dl=1);
+        background-position: 0 0;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        padding-left: 20px;
+      }
+
+      .ent ul.pk {
+        margin-top: 30px;
+      }
+
+      .ent ul.pk li {
+        background-position: 0 -16px;
+        color: #C24704;
+      }
+
+      .ent ul.fk li {
+        background-position: 0 -32px;
+        color: #8FA63C;
+      }
+
+      .rel {
+        position: absolute;
+      }
+
+      .relLT {
+        border-left: 1px solid #000;
+        border-top: 1px solid #000;
+      }
+
+      .relLB {
+        border-left: 1px solid #000;
+        border-bottom: 1px solid #000;
+      }
+
+      .relRT {
+        border-right: 1px solid #000;
+        border-top: 1px solid #000;
+      }
+
+      .relRB {
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="ent" id="Student">
+      <ul class="pk">
+        <li>StudentID</li>
+      </ul>
+      <ul class="cols">
+        <li></li>
+        <li>Code</li>
+        <li>Name</li>
+        <li>DOB</li>
+        <li>Email</li>
+        <li></li>
+        <li></li>
+      </ul>
+      <ul class="fk">
+        <li fk="Course">PrimaryCourseID</li>
+      </ul>
+    </div>
+    
+    <div class="ent" id="StudentCourse">
+      <ul class="pk">
+        <li>StudentCourseID</li>
+      </ul>
+      <ul class="cols">
+        <li></li>
+      </ul>
+      <ul class="fk">
+        <li fk="Student">StudentID</li>
+        <li fk="Course">CourseID</li>
+      </ul>
+    </div>
+    
+    <div class="ent" id="Course">
+      <ul class="pk">
+        <li>CourseID</li>
+      </ul>
+      <ul class="cols">
+        <li>Name</li>
+        <li>Description</li>
+      </ul>
+      <ul class="fk">
+        <li fk="AreaOfStudy">AreaOfStudyID</li>
+      </ul>
+    </div>
+
+    <div class="ent" id="AreaOfStudy">
+      <ul class="pk">
+        <li>AreaOfStudyID</li>
+      </ul>
+      <ul class="cols">
+        <li>Name</li>
+        <li>Description</li>
+      </ul>
+    </div>
+
+    <div class="ent" id="Customer">
+      <ul class="pk">
+        <li>CustomerID</li>
+      </ul>
+      <ul class="cols">
+        <li></li>
+        <li>Name</li>
+        <li>Address</li>
+      </ul>
+    </div>
+
+
+    <div class="ent" id="Cars">
+      <ul class="pk">
+        <li>CarID</li>
+      </ul>
+      <ul class="cols">
+        <li></li>
+        <li>Type</li>
+        <li>Color</li>
+        <li>name of Customer</li>
+      </ul>
+      <ul class="fk">
+        <li fk="Customer">CustomerID</li>
+      </ul>
+    </div>
+
+    <script>
+      			$(".ent").draggable({   
+            	containment: 'body',   
+            	scroll: false 
+     		});
+         		
+			var lmb = false;
+			
+			$(".ent").mousedown(function(e){
+    			if(e.which === 1) lmb = true;
+			});
+			
+			$(".ent").mouseup(function(e){
+    			if(e.which === 1) lmb = false;
+			});
+         		
+			$(".ent").mousemove(function(e) {
+	        	if (e.which === 1 && lmb) {
+	        		calculate();
+	        	}
+    		});
+         		
+         		calculate = function() {
+         		
+	         		$(".ent").each(function() {
+	         			var ent = $(this);
+	         			if ($(this).children(".fk").length != 0) {
+	         				$(this).children(".fk").children("li").each(function() {
+	         					var tbName = $(this).attr("fk");
+	         					var rt = $("#"+tbName);
+	         					
+	         					if ($("#rel"+tbName).length == 0) {
+	         						var rel = $("<div class='rel'></div>");
+									rel.attr("id", "rel"+tbName)
+	         					}
+	         					else
+	         						var rel = $("#rel"+tbName);
+	         					
+	         					var sx = ent.offset().left + Math.round(ent.outerWidth() /2);
+	         					var sy = ent.offset().top  + Math.round(ent.outerHeight()/2);
+	         					var ex = rt .offset().left + Math.round(rt .outerWidth() /2);
+	         					var ey = rt .offset().top  + Math.round(rt .outerHeight()/2);
+	         					
+	         					var t,l;
+	         					if (sy > ey) t = ey; else t = sy;
+	         					if (sx > ex) {
+	         						l = ex;
+	         					} else {
+									l = sx;
+								}
+								
+								var cx = sx - ex;
+								var cy = sy - ey;
+								if ((cx>=0) && (cy>=0)) {
+									rel.toggleClass("relRT", true);
+									rel.toggleClass("relLB relRB relLT", false);
+								} else if ((cx>0) && (cy<0)) {
+									rel.toggleClass("relRB", true);
+									rel.toggleClass("relLB relLT relRT", false);									
+								} else if ((cx<0) && (cy>0)) {
+									rel.toggleClass("relLT", true);
+									rel.toggleClass("relLB relRT relRB", false);
+								} else if ((cx<0) && (cy<0)) {
+									rel.toggleClass("relLB", true);
+									rel.toggleClass("relLT relRT relRB", false);
+								}
+
+	         					rel.offset({top: t, left: l});
+	         					rel.height(Math.abs(ey - sy));
+	         					rel.width (Math.abs(ex - sx));
+
+	         					$("body").append(rel);
+	         				});
+	         			}
+	         		});
+         		}
+         		
+         		calculate();
+    </script>
+  </body>  
+</html>

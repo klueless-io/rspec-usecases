@@ -29,8 +29,6 @@ RSpec.configure do |config|
   is_exclude_usecases_in_development = false
   config.filter_run_excluding usecases: (is_continuous_integration || is_exclude_usecases_in_development)
 
-  config.extend Rspec::Usecases
-
   # Documentor only comes into existence if :usecases exists
   config.before(:context, :usecases) do
     # puts '-' * 70
@@ -39,8 +37,26 @@ RSpec.configure do |config|
     @documentor = Rspec::Usecases::Documentor.new(self.class)
   end
 
+  config.around(:example) do |example|
+    stdout_saved = $stdout
+    $stdout      = StringIO.new
+    example.run
+
+    example.metadata[:usecase_content].captured_output = $stdout.string if example.metadata[:usecase_content]
+  ensure
+    @capture     = $stdout
+    $stdout      = stdout_saved
+  end
+
+  config.after do |example|
+    example.metadata[:usecase_content]&.after_hook
+  end
+
   config.after(:context, :usecases) do
-    @documentor.render unless @documentor.document.skip_render?
+    unless @documentor.document.skip_render?
+      @documentor.document.after_context
+      @documentor.render
+    end
     # puts '-' * 70
     # puts self.class
     # puts '-' * 70
