@@ -1,0 +1,34 @@
+{
+  "document": {
+    "title": "dotenv",
+    "description": "Some examples of how to use Rspec::Usage"
+  },
+  "usecases": [
+    {
+      "usage": "",
+      "usage_description": "",
+      "key": "RSpec::ExampleGroups::Dotenv::Overview",
+      "hierarchy_level": 1,
+      "heading_level": 2,
+      "title": "Overview",
+      "deep_title": "dotenv Overview",
+      "summary": "",
+      "contents": [
+        {
+          "id": "1:1:1",
+          "title": "",
+          "category": "content",
+          "type": "raw",
+          "source": "Shim to load environment variables from `.env` into `ENV` in *development*.\n\nStoring [configuration in the environment](http://12factor.net/config) is one of the tenets of a [twelve-factor app](http://12factor.net). Anything that is likely to change between deployment environments–such as resource handles for databases or credentials for external services–should be extracted from the code into environment variables.\n\nBut it is not always practical to set environment variables on development machines or continuous integration servers where multiple projects are run. dotenv loads variables from a `.env` file into `ENV` when the environment is bootstrapped.\n\n## Installation\n\n### Rails\n\nAdd this line to the top of your application's Gemfile:\n\n```ruby\ngem 'dotenv-rails', groups: [:development, :test]\n```\n\nAnd then execute:\n\n```shell\n$ bundle\n```\n\n#### Note on load order\n\ndotenv is initialized in your Rails app during the `before_configuration` callback, which is fired when the `Application` constant is defined in `config/application.rb` with `class Application < Rails::Application`. If you need it to be initialized sooner, you can manually call `Dotenv::Railtie.load`.\n\n```ruby\n# config/application.rb\nBundler.require(*Rails.groups)\n\nDotenv::Railtie.load\n\nHOSTNAME = ENV['HOSTNAME']\n```\n\nIf you use gems that require environment variables to be set before they are loaded, then list `dotenv-rails` in the `Gemfile` before those other gems and require `dotenv/rails-now`.\n\n```ruby\ngem 'dotenv-rails', require: 'dotenv/rails-now'\ngem 'gem-that-requires-env-variables'\n```",
+          "expected_description": null,
+          "captured_output": "",
+          "note": "",
+          "is_hr": false
+        }
+      ],
+      "groups": [
+
+      ]
+    }
+  ]
+}

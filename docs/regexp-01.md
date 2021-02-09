@@ -15,5 +15,7 @@ puts source =~ /[aeiou]/
 - =~
 
 ```ruby
-
+0
+true
+true
 ```
