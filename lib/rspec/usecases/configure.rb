@@ -38,21 +38,31 @@ module Rspec
       config.alias_example_group_to :group    , usecase: true  , group_type: :group
       config.alias_example_group_to :xgroup   , usecase: false , group_type: :group
 
+      add_code_examples(config)
+      add_content_examples(config)
+
+      config.extend Rspec::Usecases::Helpers
+    end
+
+    def self.add_code_examples(config)
       add_focused_example(config, :code       , category: :code    , type: :unknown)
 
       add_focused_example(config, :ruby       , category: :code    , type: :ruby)
       add_focused_example(config, :css        , category: :code    , type: :css)
       add_focused_example(config, :js         , category: :code    , type: :javascript)
       add_focused_example(config, :javascript , category: :code    , type: :javascript)
+      add_focused_example(config, :bash       , category: :code    , type: :bash)
+      add_focused_example(config, :text       , category: :code    , type: :text)
+    end
 
+    def self.add_content_examples(config)
       # This may need to be it's own typed
       add_focused_example(config, :content    , category: :content, type: :content)
       add_focused_example(config, :outcome    , category: :content, type: :outcome)
       add_focused_example(config, :item       , category: :content, type: :item)
+      add_focused_example(config, :raw        , category: :content, type: :raw)
 
       add_example(config        , :hr         , category: :content, type: :hr)
-
-      config.extend Rspec::Usecases::Helpers
     end
   end
 end

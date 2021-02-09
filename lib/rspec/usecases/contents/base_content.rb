@@ -32,21 +32,21 @@ module Rspec
         # :type
         attr_accessor :type
 
-        # :expected_description
+        # Store the expected_description, this gets populated when title is empty and an expect() matcher is used
         #
         # Based on the code found in example.rb at line: 540
         # https://github.com/rspec/rspec-core/blob/ecb65d2d4ea7b381472e3084f45e2da94e00ce91/lib/rspec/core/example.rb#L540
         # RSpec::Matchers.generated_description
         attr_accessor :expected_description
 
+        # Store the captured output of the test if the test writes to $stdout
+        attr_accessor :captured_output
+
         # attach the RSpec example to the content
         attr_accessor :example
 
         # source
         attr_accessor :source
-
-        # source_from (lambda that will go and build the source)
-        attr_accessor :source_from
 
         # Note, similar to summary on usecase, but due to metadata inheritance
         # I needed to use a different name
@@ -55,8 +55,13 @@ module Rspec
         # is_hr
         attr_accessor :is_hr
 
-        # Store the captured output of the test if the test writes to $stdout
-        attr_accessor :captured_output
+        # expected2source is a shortcut for routing the :expected_description
+        # from an existing ID example to the source attribute on this example
+        attr_accessor :expected2source
+
+        # capture2source is a shortcut for routing the :captured_output
+        # from an existing ID example to the source attribute on this example
+        attr_accessor :capture2source
 
         def self.parse(example)
           # return nil if example.description.nil?# || example.description.strip.length.zero?
@@ -106,6 +111,8 @@ module Rspec
         def load_meta_attribute_options(example)
           # May want to delegate this to an OpenStruct called options
           @is_hr = !!example.metadata[:hr]
+          @expected2source = example.metadata[:expected2source]
+          @capture2source = example.metadata[:capture2source]
         end
 
         def am_i?(type)
@@ -113,8 +120,17 @@ module Rspec
         end
         alias i_am? am_i?
 
+        # You can add an after_context: lambda to any test
+        #
+        # @example
+        #   after_context: lambda { |document, content| content.source = document.lookup_content[:example2].captured_output }
+        #
         def after_context(document)
           example.metadata[:after_context]&.call(document, self)
+
+          # pre-configured lambda's
+          self.source = document.lookup_content[expected2source].expected_description if expected2source
+          self.source = document.lookup_content[capture2source].captured_output if capture2source
         end
 
         def after_hook

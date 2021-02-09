@@ -106,8 +106,11 @@ module Rspec
 
           return if content.source == ''
 
-          if content.type == :outcome
+          case content.type
+          when :outcome
             block_quotes content.source
+          when :raw
+            write_line content.source
           else
             render_code_block(content.source, :ruby)
           end

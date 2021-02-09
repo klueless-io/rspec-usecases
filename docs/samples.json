@@ -144,6 +144,17 @@
             {
               "id": "1:1:1:2:4",
               "title": "",
+              "category": "code",
+              "type": "text",
+              "source": "",
+              "expected_description": null,
+              "captured_output": "",
+              "note": "",
+              "is_hr": false
+            },
+            {
+              "id": "1:1:1:2:5",
+              "title": "",
               "category": "content",
               "type": "hr",
               "source": "",
@@ -164,7 +175,7 @@
               "is_hr": false
             },
             {
-              "id": "1:1:1:2:6",
+              "id": "1:1:1:2:7",
               "title": "",
               "category": "content",
               "type": "outcome",
@@ -179,6 +190,54 @@
 
           ]
         }
+      ]
+    },
+    {
+      "usage": "Array.load",
+      "usage_description": "Array.load - description goes here",
+      "key": "RSpec::ExampleGroups::Array::Load::Nested2ndBasics",
+      "hierarchy_level": 1,
+      "heading_level": 2,
+      "title": "2nd basics",
+      "deep_title": "Array load 2nd basics",
+      "summary": "",
+      "contents": [
+        {
+          "id": "example2",
+          "title": "Initialize an array",
+          "category": "code",
+          "type": "ruby",
+          "source": "display = true\n[1,2,3].each do |i|\n  puts \"the quick brown fox: #{i}\" if display\n\n  ['A','B','C'].each do |x|\n    puts \"the quick brown fox: #{i}:#{x}\" if display\n  end\n  puts '-----------------------' if display\nend",
+          "expected_description": null,
+          "captured_output": "the quick brown fox: 1\nthe quick brown fox: 1:A\nthe quick brown fox: 1:B\nthe quick brown fox: 1:C\n-----------------------\nthe quick brown fox: 2\nthe quick brown fox: 2:A\nthe quick brown fox: 2:B\nthe quick brown fox: 2:C\n-----------------------\nthe quick brown fox: 3\nthe quick brown fox: 3:A\nthe quick brown fox: 3:B\nthe quick brown fox: 3:C\n-----------------------\n",
+          "note": "",
+          "is_hr": true
+        },
+        {
+          "id": "1:1:2:2",
+          "title": "",
+          "category": "code",
+          "type": "text",
+          "source": "the quick brown fox: 1\nthe quick brown fox: 1:A\nthe quick brown fox: 1:B\nthe quick brown fox: 1:C\n-----------------------\nthe quick brown fox: 2\nthe quick brown fox: 2:A\nthe quick brown fox: 2:B\nthe quick brown fox: 2:C\n-----------------------\nthe quick brown fox: 3\nthe quick brown fox: 3:A\nthe quick brown fox: 3:B\nthe quick brown fox: 3:C\n-----------------------\n",
+          "expected_description": null,
+          "captured_output": "",
+          "note": "",
+          "is_hr": false
+        },
+        {
+          "id": "1:1:2:3",
+          "title": "",
+          "category": "code",
+          "type": "text",
+          "source": "",
+          "expected_description": null,
+          "captured_output": "",
+          "note": "",
+          "is_hr": false
+        }
+      ],
+      "groups": [
+
       ]
     }
   ]
