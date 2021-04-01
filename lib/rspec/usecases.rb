@@ -30,3 +30,5 @@ module Rspec
     # Your code goes here...
   end
 end
+
+puts "Rspec::Usecases::Version: #{Rspec::Usecases::VERSION}" if ENV['KLUE_DEBUG']&.to_s&.downcase == 'true'
