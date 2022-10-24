@@ -13,7 +13,7 @@ group :development do
     #   # ```export RUBY_DEBUG_DEVELOPMENT=true```
     #   # gem 'jazz_fingers'
     #   # gem 'pry-coolline', github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
-    gem 'pry-coolline', github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
+    # gem 'pry-coolline', github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
   end
 end
 group :development, :test do
@@ -22,7 +22,7 @@ group :development, :test do
   gem 'guard-rubocop', '~> 1.2'
   gem 'jazz_fingers'
   gem 'pry'
-  gem 'rake', '~> 12.0'
+  gem 'rake'
   gem 'rake-compiler', require: false
   gem 'rspec', '~> 3.0'
 

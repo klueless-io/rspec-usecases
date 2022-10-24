@@ -31,4 +31,9 @@ module Rspec
   end
 end
 
-puts "Rspec::Usecases::Version: #{Rspec::Usecases::VERSION}" if ENV['KLUE_DEBUG']&.to_s&.downcase == 'true'
+if ENV.fetch('KLUE_DEBUG', 'false').downcase == 'true'
+  namespace = 'Rspec::Usecases::Version'
+  file_path = $LOADED_FEATURES.find { |f| f.include?('rspec/usecases/version') }
+  version   = Rspec::Usecases::VERSION.ljust(9)
+  puts "#{namespace.ljust(35)} : #{version.ljust(9)} : #{file_path}"
+end
